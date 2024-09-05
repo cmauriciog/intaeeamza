@@ -378,8 +378,8 @@ var mapa = L.map('mapa', {editable:true,
 L.control.layers(CapasBase).addTo(mapa);
 
 <!--Crear la herramienta de medición de área-->
-//let measurePolygonControl = L.control.measurePolygon();
-//measurePolygonControl.addTo(mapa);
+let measurePolygonControl = L.control.measurePolygon();
+measurePolygonControl.addTo(mapa);
 
 <!--Añadir el mini-mapa al lienzo-->
 var worldMiniMap = L.control.worldMiniMap({position: 'bottomright', style: {opacity: 0.9, borderRadius: '0px', backgroundColor: 'lightblue'}}).addTo(mapa);

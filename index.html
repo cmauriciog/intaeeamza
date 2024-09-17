@@ -21,6 +21,8 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
 	integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
 	crossorigin=""/>
+	<link type="text/css" rel="stylesheet" href='css\component-chosen.css'>
+	<link type="text/css" rel="stylesheet" href='css\component-chosen.min.css'>
 
 	<!-- JS -->
 	<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
@@ -37,12 +39,15 @@
 	<script src="libs/editable.js" ></script>
 	<script src="libs/measure.js"></script>
 	<script src="leaflet.MeasurePolygon.js"></script>
+	<script src="js/jquery-3.4.1.min.js" ></script>
+	<script src="js/chosen.jquery.js" type="text/javascript"></script>
 
 	<!-- Añado un pluging de minimapa -->
    <script src="https://cdn.jsdelivr.net/gh/maneoverland/leaflet.WorldMiniMap@1.0.0/dist/Control.WorldMiniMap.js" integrity="sha512-PFw8St3qenU1/dmwCfiYYN/bRcqY1p3+sBATR+rZ6622eyXOk/8izVtlmm/k8qW7KbRIJsku838WCV5LMs6FCg==" crossorigin=""></script>
    
    <!-- Importo el geoJSON -->
    <script src="geojson/ensayos.geojson" type="text/javascript"></script>
+   <script src="geojson/personal.geojson" type="text/javascript"></script>
    
 	<!--Icono para la pestaña del navegador-->
 	 <link rel="shortcut icon" href="./image/icono.ico" type="image/x-icon"/>
@@ -136,15 +141,14 @@
 
 <!--Barra con el título y logo-->
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a style="font-size:15px; color:white">VISOR DE PARCELAS CON CULTIVOS Y CONSTRUCCIONES DE LA EEA INTA MENDOZA</a>
-  <a style="font-size:11px; color:green">Necesitás ubicar una persona o un lugar?. Buscalo acá...</a>
-  <select id="encontrar_a" style="height:25px; width:100px; background-color:green" onchange="EncontrarA(value)">
-	<option value="" ></option>
-	<option value="Analia" >Analía Diaz Bruno</option>
-	<option value="Claudio" >Claudio Galmarini</option>
-  </select>
-  <div id="ubicacion_texto" style="font-size:10px; text-align:right; background-color:grey; color:blue"><strong>Activar mi ubicación  	 </strong><a id="ubicacion_estado" href="javascript:activar_seguimiento(seguimiento)"><img id="gps" src="image/slide_off.jpg" width="50" height="30"></img></a></div>
-  <img src="image/INTA.png" width="60" height="60"></img>
+	<a style="font-size:15px; color:white">VISOR DE PARCELAS CON CULTIVOS Y CONSTRUCCIONES DE LA EEA INTA MENDOZA</a>
+	<a style="font-size:11px; color:green">
+		<!--<select id="encontrar_a" name="encontraralgo" data-placeholder="¿Necesitás ubicar una persona o un lugar?. Buscalo acá..." class="form-control chosenbusqueda" value="<%= typeof Casas != 'undefined' ? Casas : '' %>" onchange="EncontrarA(value)">
+			<option value=""></option>
+		</select>-->
+	</a>
+	<div id="ubicacion_texto" style="font-size:10px; text-align:right; background-color:grey; color:blue"><strong>Activar mi ubicación</strong><a id="ubicacion_estado" href="javascript:activar_seguimiento(seguimiento)"><img id="gps" src="./image/slide_off.jpg" width="50" height="30"></img></a></div>
+	<img src="image/INTA.png" width="60" height="60"></img>
 </header>
 
 <!--Barra lateral con su formato y elementos-->
@@ -152,7 +156,6 @@
 	<div class="row">
 		<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
 			<div id="barrabotones" class="position-sticky pt-3 sidebar-sticky"">
-				<!--<a id="seguimientogps" style="font-size:12px; color:blue" href="javascript:activar_seguimiento()"><img src="image/posicion.png" width="20" height="20"></img>==> Activar Ubicación</a>-->
 				<p></p>
 				<p style="font-size:12px; color:blue">¿Necesitás filtrar por cultivo o construcción?. Seleccionalo desde aquí...</p>
 				<div id="opciones_cob" style="font-size:12px">
@@ -286,12 +289,9 @@
 						<option value="Juan C. Casciani">Juan C. Casciani</option>
 					</select>
 				</div>
-				<!--<p><input type="search" id="cobertura_buscada" name="buscarcobertura" placeholder="Cultivo/Cobertura a buscar..." style="font-size:12px; color:blue"><input type="submit" value="Buscar" onclick="coberturasAbuscar()"></p><br>-->
-				<!--<p></br></p>-->
 				<button id="mostrartodo" type="button" style="background-color:green" onclick="mostrarTodo()">Mostrar todas las parcelas</button>
 				<p><br></p>
 				<button id="quitartodo" type="button" style="background-color:red" onclick="resetearTodo()">Quitar todas las parcelas del mapa</button>
-				<!--<p><br></p>-->
 				<div id="contenedor_resumen" style="background-color:gray">
 					<label id="resumen" style="font-size:12px"><br></label>
 				</div>
@@ -307,9 +307,6 @@
 		<!--Dimensionar el tamaño de la pantalla que ocupará el mapa -->
 		<main class="col-md-9 ms-sm-auto col-lg-10">
 			<div id="mapa" style="width:100%;height:560px;">
-			<!--<a href="https://www.campusmvp.es/recursos/" title="Al blog de recursos de campusMVP">
-				<img src="./image/Flores.jpg" alt="Enlace con imagen usando el logo de campusMVP" />
-			</a>-->
 			</div>
 		</main>
 	</div>
@@ -383,6 +380,10 @@ measurePolygonControl.addTo(mapa);
 
 <!--Añadir el mini-mapa al lienzo-->
 var worldMiniMap = L.control.worldMiniMap({position: 'bottomright', style: {opacity: 0.9, borderRadius: '0px', backgroundColor: 'lightblue'}}).addTo(mapa);
+$('.chosenbusqueda').chosen({no_results_text: "No se encuentran coincidencias...",allow_single_deselect: true});
+$(".chosenbusqueda").chosen().on("chosen:showing_dropdown", function(event) {  
+	$(".chosenbusqueda").trigger('chosen:updated');                                                                           
+});
 
 <!--Establecer variables globales-->
 var capa_filtrada={};
@@ -398,6 +399,7 @@ var conexion="";
 var circulo="";
 var marcador="";
 var seguimiento="si";
+var listabusqueda=[];
 
 <!--Funcion para colorear el fondo según el tipo de coberura (cultivos/edificios)-->
 function ColorFondo(d) {
@@ -737,9 +739,8 @@ function activar_seguimiento() {
 	if((! navigator.geolocation || ! navigator.onLine) && seguimiento=="si") {
 		alert("Oho...!!! Parece que no tenés activado del GPS y/o no tenés conexión a internet...!!!.-");
 	} else {
-		document.getElementById("seguimientogps").innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return desactivar_seguimiento()'><img src='image/posicion.png' width='20' height='20'><u>==> Detener Ubicación</u></p>";
 		setInterval(() => {
-		document.getElementById("gps").src="./images/slide_on.jpg";
+		document.getElementById("gps").src="./image/slide_on.jpg";
 		navigator.geolocation.getCurrentPosition(getPosition)
 		}, 2000);
 	};
@@ -751,8 +752,8 @@ function desactivar_seguimiento() {
 	mapa.setView([-33.004058, -68.861730]);
 	mapa.setZoom(16);
 	navigator.geolocation.getCurrentPosition(getPosition);
-	document.getElementById("gps").src="./images/slide_off.jpg";
-	document.getElementById("seguimientogps").innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return activar_seguimiento()'><u>Activar Ubicacion</u></p>";
+	document.getElementById("gps").src="./image/slide_off.jpg";
+	document.getElementById("ubicacion_texto").innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return activar_seguimiento()'><u>Activar Ubicacion</u></p>";
 };
 
 <!--Función para capturar la ubicación actual-->
@@ -776,7 +777,7 @@ function getPosition(position){
 	if (seguimiento=="si") {
 		mapa.flyToBounds(featureGroup.getBounds());
 		mapa.setView([lat,lon]);
-		console.log(seguimiento);
+		//console.log(seguimiento);
 	};
 };
 
@@ -800,6 +801,44 @@ function verificarConexion() {
     conexion="no";
   }
 };
+
+<!--Función para armar el arreglo de sectores, personas y actividades-->
+function listasectores(feature, layer) {
+	if (feature.properties.Cobertura !="Cultivo" && feature.properties.Descripcio !="Vivienda" && feature.properties.Cobertura !="Invernaculo" && feature.properties.Descripcio !="Deposito" && feature.properties.Descripcio !=null) {
+		listabusqueda.push(feature.properties.Descripcio);
+	};
+	if (feature.properties.Cobertura !="Cultivo" && feature.properties.Descripcio !="Vivienda" && feature.properties.Cobertura !="Invernaculo" && feature.properties.Actividad !=null) {
+		listabusqueda.push(feature.properties.Actividad);
+	};
+	if (feature.properties.Cobertura !="Cultivo" && feature.properties.Descripcio !="Vivienda" && feature.properties.Cobertura !="Invernaculo" && feature.properties.Actividad1 !=null) {
+		listabusqueda.push(feature.properties.Actividad1);
+	};
+	if (feature.properties.Cobertura !="Cultivo" && feature.properties.Descripcio !="Vivienda" && feature.properties.Cobertura !="Invernaculo" && feature.properties.Actividad2 !=null) {
+		listabusqueda.push(feature.properties.Actividad2);
+	};
+	if (feature.properties.Cobertura !="Cultivo" && feature.properties.Descripcio !="Vivienda" && feature.properties.Cobertura !="Invernaculo" && feature.properties.Actividad3 !=null) {
+		listabusqueda.push(feature.properties.Actividad3);
+	};
+	//console.log(listabusqueda);
+};
+
+<!--Función para cargar el listado de sectores, personas y actividades y asignarlo al listbox correspondiente-->
+function armarlistabusqueda(listabusqueda) {
+	var select = document.getElementById('encontrar_a');
+	var i;
+	for (i = 0; i < listabusqueda.length; i++) {
+		var opt = listabusqueda[i];
+		var el = document.createElement("option");
+		el.textContent = opt;
+		el.value = opt;
+		select.appendChild(el);
+	};
+};
+
+geojson = L.geoJson(parcelas, {onEachFeature: listasectores}).addTo(mapa);
+geojson.remove();
+listabusqueda.sort();
+//armarlistabusqueda(listabusqueda);
 
 <!--Captura de eventos de ventana modal de estadisticas-->
 const btncerrarmodalestadisticas=document.querySelector("#btn-cerrar-modal-estadisticas");

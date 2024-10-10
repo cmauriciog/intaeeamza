@@ -142,12 +142,10 @@
 <!--Barra con el título y logo-->
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
 	<a style="font-size:15px; color:white">VISOR DE PARCELAS CON CULTIVOS Y CONSTRUCCIONES DE LA EEA INTA MENDOZA</a>
-	<a style="font-size:11px; color:green">
-		<!--<select id="encontrar_a" name="encontraralgo" data-placeholder="¿Necesitás ubicar una persona o un lugar?. Buscalo acá..." class="form-control chosenbusqueda" value="<%= typeof Casas != 'undefined' ? Casas : '' %>" onchange="EncontrarA(value)">
-			<option value=""></option>
-		</select>-->
-	</a>
-	<div id="ubicacion_texto" style="font-size:10px; text-align:right; background-color:grey; color:blue"><strong>Activar mi ubicación</strong><a id="ubicacion_estado" href="javascript:activar_seguimiento(seguimiento)"><img id="gps" src="./image/slide_off.jpg" width="50" height="30"></img></a></div>
+	<select id="encontrar_a" name="encontraralgo" data-placeholder="¿Necesitás ubicar una persona o un lugar?. Buscalo acá..." class="form-control chosenbusqueda" value="<%= typeof Casas != 'undefined' ? Casas : '' %>" onchange="EncontrarA(value)">
+		<option value=""></option>
+	</select>
+	<div id="ubicacion_texto" style="font-size:10px; text-align:right; background-color:grey; color:blue;width:80px"><strong>Activar mi ubicación</strong><a id="ubicacion_estado" href="javascript:Activar_Seguimiento(seguimiento)"><img id="gps" src="./image/slide_off.jpg" width="50" height="30"></img></a></div>
 	<img src="image/INTA.png" width="60" height="60"></img>
 </header>
 
@@ -159,7 +157,7 @@
 				<p></p>
 				<p style="font-size:12px; color:blue">¿Necesitás filtrar por cultivo o construcción?. Seleccionalo desde aquí...</p>
 				<div id="opciones_cob" style="font-size:12px">
-					<select id="cobertura_vid" onchange="coberturasAbuscar(value)">
+					<select id="cobertura_vid" onchange="CoberturasAbuscar(value)">
 						<option value="" ></option>
 						<option value="Ancelotta" >Ancelotta (tinta para vino)</option>
 						<option value="Barbera D'asty" >Barbera D'Asty (tinta para vino)</option>
@@ -191,7 +189,7 @@
 				</div>
 				<p style="font-size:12px; color:blue"></br>¿Querés hacer la búsqueda con otro criterio?. Seleccionalo desde aquí...</p>
 				<div id="opciones_otr" style="font-size:12px">
-					<select id="otro_criterio" onchange="criterioAbuscar(value)">
+					<select id="otro_criterio" onchange="CriterioAbuscar(value)">
 						<option value="" ></option>
 						<option value="Cobertura" >Tipo cobertura (cultivos/construc.)</option>
 						<option value="Especie" >Especie de cultivo</option>
@@ -204,7 +202,7 @@
 					</select>
 				</div>
 				<div id="cobertura" style="font-size:12px">
-					<select id="sel_cobertura" onchange="buscarOtro(value)">
+					<select id="sel_cobertura" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="Cultivo">Cultivos</option>
 						<option value="Edificio">Edificios</option>
@@ -214,7 +212,7 @@
 					</select>
 				</div>
 				<div id="especie" style="font-size:12px">
-					<select id="sel_especie" onchange="buscarOtro(value)">
+					<select id="sel_especie" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="Vid">Vid</option>
 						<option value="Cerezo">Cerezos</option>
@@ -227,21 +225,21 @@
 					</select>
 				</div>
 				<div id="conduccion" style="font-size:12px">
-					<select id="sel_conduccion" onchange="buscarOtro(value)">
+					<select id="sel_conduccion" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="Espaldero">Espaldero</option>
 						<option value="Parral">Parral</option>
 					</select>
 				</div>
 				<div id="riego" style="font-size:12px">
-					<select id="sel_riego" onchange="buscarOtro(value)">
+					<select id="sel_riego" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="Goteo">Goteo</option>
 						<option value="Superficial">Superficial</option>
 					</select>
 				</div>
 				<div id="clon" style="font-size:12px">
-					<select id="sel_clon" onchange="buscarOtro(value)">
+					<select id="sel_clon" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="12">12</option>
 						<option value="18">18</option>
@@ -249,7 +247,7 @@
 					</select>
 				</div>
 				<div id="plantacion" style="font-size:12px">
-					<select id="sel_plantacion" onchange="buscarOtro(value)">
+					<select id="sel_plantacion" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="Antes de 1990">Antes de 1990</option>
 						<option value="Entre 1991 y 2000">Entre 1990 y 2000</option>
@@ -258,7 +256,7 @@
 					</select>
 				</div>
 				<div id="superficie" style="font-size:12px">
-					<select id="sel_superficie" onchange="buscarOtro(value)">
+					<select id="sel_superficie" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="Menos de 0,1 ha">Menor a 0,1 ha</option>
 						<option value="Entre 0,1 y 0,2 ha">Entre 0,1 y 0,2 ha</option>
@@ -272,7 +270,7 @@
 					</select>
 				</div>
 				<div id="responsable" style="font-size:12px">
-					<select id="sel_responsable" onchange="buscarOtro(value)">
+					<select id="sel_responsable" onchange="BuscarOtro(value)">
 						<option value="" ></option>
 						<option value="Ecofisiologia">Ecofisiología</option>
 						<option value="Monsanto">Monsanto</option>
@@ -289,9 +287,9 @@
 						<option value="Juan C. Casciani">Juan C. Casciani</option>
 					</select>
 				</div>
-				<button id="mostrartodo" type="button" style="background-color:green" onclick="mostrarTodo()">Mostrar todas las parcelas</button>
+				<button id="mostrartodo" type="button" style="background-color:green" onclick="MostrarTodo()">Mostrar todas las parcelas</button>
 				<p><br></p>
-				<button id="quitartodo" type="button" style="background-color:red" onclick="resetearTodo()">Quitar todas las parcelas del mapa</button>
+				<button id="quitartodo" type="button" style="background-color:red" onclick="ResetearTodo()">Quitar todas las parcelas del mapa</button>
 				<div id="contenedor_resumen" style="background-color:gray">
 					<label id="resumen" style="font-size:12px"><br></label>
 				</div>
@@ -301,6 +299,8 @@
 				<p style="font-size:12px">3ª) Hacé un click en cada uno de los dos puntos a medir...Y LISTO...!!!</p>
 				<p><img src="image/cultivos.jpg" width="20" height="20">Parcelas con cultivos</img></p>
 				<p><img src="image/construcciones.jpg" width="20" height="20">Parcelas con construcciones</img></p>
+				<!--<a style="font-size:12px; color:blue" href="mailto:cmauriciogodoy@gmail.com?subject=Asunto del correo&body=Cuerpo del mensaje">Hacer un aporte o reportar un error</a> <!--onclick="CopiarAlPortapapeles(); CopiarAlPortapapeles1()"-->
+				<a style="font-size:12px; color:blue" onclick="CopiarAlPortapapeles(); CopiarAlPortapapeles1()">Hacer un aporte o reportar un error</a>
 			</div>
 		</nav>
 
@@ -319,38 +319,31 @@
 <!--Mapas o capas bases-->
 var ign = new L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
 	attribution: 'Teselas <a href="https://www.ign.gob.ar/" target="blanck">IGN</a> &copy; Desarrollado por: Mauricio Godoy',
-	//minZoom: 1,
 	}
 );
 
 var igngris=new L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
 	attribution: 'Teselas <a href="https://www.ign.gob.ar/" target="blanck">IGN</a> &copy; Desarrollado por: Mauricio Godoy',
-	//minZoom: 1,
 	}
 );
 
 var osm = new L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: 'Teselas <a href="https://www.openstreetmap.org/" target="blanck">OSM</a> &copy; Desarrollado por: Mauricio Godoy',
-	//minZoom: 1
 	}
 );
 var googlesatelite = new L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 	attribution: 'Teselas <a href="https://www.google.com.ar/maps/@-21.5405995,-63.9542602,11544855m/data=!3m1!1e3?entry=ttu" target="blanck">Google Satelital</a> &copy; Desarrollado por: Mauricio Godoy',
-	//minZoom: 1
 	}
 );
 var googlecallejero=new L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
 	attribution: 'Teselas <a href="https://www.google.com/maps/d/viewer?mid=1pFMZyH1aut3nTDdgkw2U9c3jtxY&hl=en_US&ll=-40.429460336394065%2C-63.6166725&z=4/" target="blanck">Google Maps</a> &copy; Desarrollado por: Mauricio Godoy',
-	//minZoom: 1
 	}
 );
 var oscuro = new L.tileLayer('http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
 	attribution: 'Teselas <a href="https://carto.com/about-carto/" target="blanck">Carto</a> &copy; Desarrollado por: Mauricio Godoy',
-	//minZoom: 1
 	}
 );
 var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-    //maxZoom: 19,
     attribution: 'Map data: © OpenStreetMap contributors, SRTM | Map style: © OpenTopoMap (CC-BY-SA)'
 	});
 
@@ -387,6 +380,8 @@ $(".chosenbusqueda").chosen().on("chosen:showing_dropdown", function(event) {
 
 <!--Establecer variables globales-->
 var capa_filtrada={};
+var capa_buscar={};
+var capa_buscar1={};
 var sup_total=0;
 var tot_parc=0;
 var prom_prod=0;
@@ -400,6 +395,12 @@ var circulo="";
 var marcador="";
 var seguimiento="si";
 var listabusqueda=[];
+var listabusquedafiltrada=[];
+var sector="";
+var coincidencia="";
+var persona="";
+var oficina="";
+var lugar="";
 
 <!--Funcion para colorear el fondo según el tipo de coberura (cultivos/edificios)-->
 function ColorFondo(d) {
@@ -431,7 +432,7 @@ function ColorPerimetro(d) {
 			'black'};
 
 <!--Funcion para llamar subfunciones de coloreo perímetros y áreas-->
-function personalizarPerimetro(feature) {
+function PersonalizarPerimetro(feature) {
 	return {
 	fillColor: ColorFondo(feature.properties.Cobertura),
 	weight: 4,
@@ -439,9 +440,19 @@ function personalizarPerimetro(feature) {
 	color: ColorPerimetro(feature.properties.Cobertura),
 	dashArray: '3',
 	fillOpacity: 0.3}};
+	
+function PersonalizarBusquedas(feature) {
+	return {
+	fillColor: 'red',
+	weight: 4,
+	opacity: 1,
+	color: 'blue',
+	dashArray: '3',
+	fillOpacity: 0.8}};
 
 <!--Función para preparar todos los Pop-ups-->
 function onEachFeature(feature, layer) {
+	if (encontrar_a.value=="") {
 	sup_total=sup_total+feature.properties.Sup_Croqui;
 	tot_parc=tot_parc+1;
 	<!--Calcular el promedio general-->
@@ -485,7 +496,7 @@ function onEachFeature(feature, layer) {
 		if (feature.properties.Responsabl !=null) {var responsable_parcela=feature.properties.Responsabl};
 		if (feature.properties.Responsabl ==null) {var responsable_parcela="Sin Información"};
 		<!--PopUp a mostrar SI: La parcela tiene un cultivo y tiene datos de producción-->
-		var contenidoPopup="<b><h4>Especie: "+feature.properties.Especie+"   "+"<img src="+logo+" width='35' height='35' /img>"+"</b></h4><br/>Variedad: "+varied+"<br/>Conducción: "+conduc+"<br/>Año de plantación: "+planta+"<br/>Hileras: "+feature.properties.Hileras+"<br/>Superficie: "+feature.properties.Sup_Croqui+" ha"+"<br/>Responsable: "+respon+"<br/><p style='cursor: pointer; color:#0000ff' onclick='return funcion_modal(\""+id_parcela+"\", \""+variedad_parcela+"\", \""+responsable_parcela+"\", 545, 433)'><u>Ver Gráfico de Estadísticas...</u></p>"};
+		var contenidoPopup="<b><h4>Especie: "+feature.properties.Especie+"   "+"<img src="+logo+" width='35' height='35' /img>"+"</b></h4><br/>Variedad: "+varied+"<br/>Conducción: "+conduc+"<br/>Año de plantación: "+planta+"<br/>Hileras: "+feature.properties.Hileras+"<br/>Superficie: "+feature.properties.Sup_Croqui+" ha"+"<br/>Responsable: "+respon+"<br/><p style='cursor: pointer; color:#0000ff' onclick='return Funcion_Modal(\""+id_parcela+"\", \""+variedad_parcela+"\", \""+responsable_parcela+"\", 545, 433)'><u>Ver Gráfico de Estadísticas...</u></p>"};
 	if (feature.properties.Cobertura=="Cultivo" && grafico =="SinInfo.jpg") {
 		if (feature.properties.Responsabl ==null) {respon="Sin información"};
 		if (feature.properties.Plantacion ==null) {planta="Sin información"};
@@ -502,17 +513,42 @@ function onEachFeature(feature, layer) {
 		var contenidoPopup="Cobertura: "+feature.properties.Cobertura+"   "+"<img src="+logo+" width='35' height='35' /img>"+"<br/>Descripción: "+feature.properties.Descripcio+"<br/>Superficie: "+feature.properties.Sup_Croqui+" ha"};
 	layer.bindPopup(contenidoPopup, formatoPopup);
 	document.getElementById("resumen").style.display="inline";
-	mapa.flyTo(coordenadas, zum);
+	mapa.flyTo(coordenadas, zum)}
+	else {if (feature.properties.Descripcio==sector) {
+		coord_sector=(feature.geometry.coordinates[0][1]+", "+feature.geometry.coordinates[0][0]).split(",");
+		var centroide=layer.getBounds().getCenter();
+		var coord=[];
+		coord.push(centroide.lat,centroide.lng);
+		mapa.flyTo(coord,18);
+		if (coincidencia=="sector") {var contenidoPopup="<p>Si estás buscando a:</p>"+"<h4><strong><p style='color:blue'>"+encontrar_a.value
+		+"</p></h4></b></strong>Lo encontrarás en este edificio que lleva ese mismo nombre."};
+		if (coincidencia =="actividad") {var contenidoPopup="<p>Si estás buscando a:</p>"+"<h4><strong><p style='color:blue'>"+encontrar_a.value
+		+"</p></h4></b></strong>Lo encontrarás en este edificio, llamado: "+"<h4><strong><p style='color:blue'>"+sector+"</h4></p></strong>"};
+		if (coincidencia =="persona" && oficina=="") {var contenidoPopup="<p>Si estás buscando a:</p>"+"<h4><strong><p style='color:blue'>"+encontrar_a.value
+		+"</p></h4></b></strong>Lo encontrarás en este edificio, llamado: "+"<h4><strong><p style='color:blue'>"+sector+"</h4></p></strong>"};
+		if (coincidencia =="persona" && oficina !=="") {var contenidoPopup="<p>Si estás buscando a:</p>"
+		+"<h4><strong><p style='color:blue'>"+encontrar_a.value+"</p></h4></b></strong>Lo encontrarás en este edificio, llamado: "+"<h4><strong><p style='color:blue'>"+sector+"</h4></p></strong>"
+		+"<p>Te recomendamos preguntar por la Oficina o el Laboratorio de: "+"<h4><strong><p style='color:blue'>"+oficina+"</h4></p></strong>"};
+		if (coincidencia=="especialidad") {var contenidoPopup="<p>Si estás buscando a:</p>"+"<h4><strong><p style='color:blue'>"+encontrar_a.value
+		+"</p></h4></b></strong>Lo encontrarás en este edificio, llamado: "+"<h4><strong><p style='color:blue'>"+sector+"</h4></p></strong>"+
+		"<p>Te recomendamos preguntar por: "+"<h4><strong><p style='color:blue'>"+persona+"</p></strong></h4>"};
+		lugar=L.marker(coord).addTo(mapa)
+					.bindPopup(contenidoPopup, formatoPopup)
+					.openPopup()};
+	};
 	};
 
 <!--Funcion para filtrar con criterio distinto a vid. Es insensible al uso de mayúsculas/minúsculas y busca con criterio tipo "*...*" -->
-function criterioAbuscar(valor) {
+function CriterioAbuscar(valor) {
+	encontrar_a.value="";
+	cobertura_vid.value="";
 	capa_parcelas.remove();
 	sup_total=0;
 	tot_parc=0;
 	prom_prod=0;
 	anios_prod=0;
 	if(Object.keys(capa_filtrada).length !== 0) {capa_filtrada.remove()};
+	if (lugar !==""){lugar.remove()};
 	document.getElementById("responsable").style.display="none";
 	document.getElementById("conduccion").style.display="none";
 	document.getElementById("riego").style.display="none";
@@ -541,7 +577,8 @@ function criterioAbuscar(valor) {
 	document.getElementById("resumen").innerText=("Datos Estadísticos\nCriterio de filtro: "+valor)};
 
 <!--Funcion para filtrar con otro criterio distinto a vid-->
-function coberturasAbuscar(valor) {
+function CoberturasAbuscar(valor) {
+	encontrar_a.value="";
 	sup_total=0;
 	tot_parc=0;
 	prom_prod=0;
@@ -558,42 +595,43 @@ function coberturasAbuscar(valor) {
 	document.getElementById("otro_criterio").value="";
 	document.getElementById("resumen").innerText=("Datos Estadísticos\nCobertura Fitlrada: Vid\n Variedad "+valor+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha"+"\nPromedio producción anual: "+(prom_prod/anios_prod/sup_total).toFixed(2)+" qq/ha");
 	if (Object.keys(capa_filtrada).length !== 0) {capa_filtrada.remove()};
-	capa_filtrada=L.geoJSON(parcelas,{filter:filtrar_vid, style: personalizarPerimetro, onEachFeature}).addTo(mapa);
+	if (lugar !==""){lugar.remove()};
+	capa_filtrada=L.geoJSON(parcelas,{filter:Filtrar_Vid, style: PersonalizarPerimetro, onEachFeature}).addTo(mapa);
 	document.getElementById("quitartodo").style.display="inline";
 	document.getElementById("mostrartodo").style.display="inline";
 	};
 
 <!--Funcion para filtrar parcelas con valores distintos a vid-->
-function buscarOtro(valor) {
-	capa_filtrada=L.geoJSON(parcelas,{filter:filtrar_gral, style: personalizarPerimetro, onEachFeature}).addTo(mapa);
+function BuscarOtro(valor) {
+	encontrar_a.value="";
+	capa_filtrada=L.geoJSON(parcelas,{filter:Filtrar_Gral, style: PersonalizarPerimetro, onEachFeature}).addTo(mapa);
 	document.getElementById("resumen").style.display="inline";
 	if (anios_prod !==0) {document.getElementById("resumen").innerText=("Datos Estadísticos\nCriterios de filtro: "+resumen+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha"+"\nPromedio producción anual: "+(prom_prod/anios_prod/sup_total).toFixed(2)+" qq/ha")};
 	if (anios_prod ==0) {document.getElementById("resumen").innerText=("Datos Estadísticos\nCriterios de filtro: "+resumen+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha")};
-	sel_clon.value="";
-	sel_cobertura.value="";
-	sel_conduccion.value="";
-	sel_especie.value="";
-	sel_plantacion.value="";
-	sel_responsable.value="";
-	sel_riego.value="";
-	sel_superficie.value="";
+	cobertura_vid.value="";
 	document.getElementById("quitartodo").style.display="inline";
 	document.getElementById("mostrartodo").style.display="inline";
 	};
 
 <!--Funcion para filtrar parcelas con vid-->
-function filtrar_vid(feature) {
+function Filtrar_Vid(feature) {
 	capa_parcelas.remove();
 	if (Object.keys(capa_filtrada).length !== 0) {capa_filtrada.remove()};
+	if (Object.keys(capa_buscar).length !==0) {capa_buscar.remove()};
+	if (Object.keys(capa_buscar1).length !==0) {capa_buscar1.remove()};
+	if (lugar !==""){lugar.remove()};
 	var cadenabusqueda=cobertura_vid.value;
 	var criterio = new RegExp(cadenabusqueda, "gi");
 	if (cobertura_vid.value !="") {if (feature.properties.Variedad==cobertura_vid.value) return true; document.getElementById("resumen").innerText=("Datos Estadísticos\nCriterio de filtro: Vid\nVariedad "+cobertura_vid.value+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha"+"\nPromedio producción anual: "+(prom_prod/anios_prod/sup_total).toFixed(2)+" qq/ha")};
 	};
 
 <!--Funcion para filtrado general-->	
-function filtrar_gral(feature) {
+function Filtrar_Gral(feature) {
 	capa_parcelas.remove();
 	if (Object.keys(capa_filtrada).length !== 0) {capa_filtrada.remove()};
+	if (Object.keys(capa_buscar).length !==0) {capa_buscar.remove()};
+	if (Object.keys(capa_buscar1).length !==0) {capa_buscar1.remove()};
+	if (lugar !==""){lugar.remove()};
 	if (sel_clon.value !=""){if (feature.properties.Clon==sel_clon.value) return true; resumen=otro_criterio.value+" "+sel_clon.value};
 	if (sel_cobertura.value !=""){if (feature.properties.Cobertura==sel_cobertura.value) return true; resumen=otro_criterio.value+" "+sel_cobertura.value};
 	if (sel_conduccion.value !=""){if (feature.properties.Conduccion==sel_conduccion.value) return true; resumen=otro_criterio.value+" "+sel_conduccion.value};
@@ -641,16 +679,89 @@ function filtrar_gral(feature) {
 	};
 	};
 
+<!--Funcion para buscar sector/actividad-->
+function Filtrar_Buscar(feature) {
+	if (feature.properties.Descripcio==encontrar_a.value) {return true,coincidencia="sector",sector=feature.properties.Descripcio};
+	if (feature.properties.Actividad==encontrar_a.value || feature.properties.Actividad1==encontrar_a.value || feature.properties.Actividad2==encontrar_a.value
+	|| feature.properties.Actividad3==encontrar_a.value) {return true,sector=feature.properties.Descripcio,coincidencia="actividad"};
+	};
+
+<!--Funcion para buscar persona/especialidad-->
+function Filtrar_Buscar1(feature) {
+	if (feature.properties.Persona==encontrar_a.value && feature.properties.Ofi_Lab !==null) {return true,sector=feature.properties.Sector,coincidencia="persona",oficina=feature.properties.Ofi_Lab};
+	if (feature.properties.Persona==encontrar_a.value && feature.properties.Ofi_Lab ==null) {return true,sector=feature.properties.Sector,coincidencia="persona"};
+	if (feature.properties.Especial==encontrar_a.value || feature.properties.Especial1==encontrar_a.value
+	|| feature.properties.Especial2==encontrar_a.value || feature.properties.Ofi_Lab==encontrar_a.value) {return true,sector=feature.properties.Sector,coincidencia="especialidad",persona=feature.properties.Persona};
+	};
+
+function Filtrar_Buscar2(feature) {
+	if (feature.properties.Descripcio==sector) {return true,sector=feature.properties.Descripcio};
+	};
+
 <!--Función para encontrar una persona o lugar-->
 function EncontrarA(encontrar) {
-	if (encontrar=="Analia") {mapa.flyTo(["-33.0030593","-68.8664403"],18)}
-	else {mapa.flyTo(["-33.00393124722162", "-68.85816558829947"],18)};
+	<!--Resetear variables-->
+	var buscado=encontrar_a.value;
+	ResetearTodo();
+	encontrar_a.value=buscado;
+	coincidencia="";
+	sector="";
+	oficina="";
+	<!--Borrar las búsquedas anteriores-->
+	if (Object.keys(capa_parcelas).length !==0) {capa_parcelas.remove()};
+	if (Object.keys(capa_filtrada).length !== 0) {capa_filtrada.remove()};
+	if (Object.keys(capa_buscar).length !==0) {capa_buscar.remove()};
+	if (Object.keys(capa_buscar1).length !==0) {capa_buscar1.remove()};
+	if (lugar !==""){lugar.remove()};
+	<!--Generar la capa con el resultado de la búsqueda-->
+	capa_buscar=L.geoJSON(parcelas,{filter:Filtrar_Buscar, style: PersonalizarBusquedas, onEachFeature}).addTo(mapa);
+	<!--No se encontró lo que se busca por coincidencia con el Sector o la especialidad de éste; así que se pasa a buscar por coincidencia con persona o sus especialidades-->
+	if (Object.keys(capa_buscar._layers).length ==0) {capa_buscar=L.geoJSON(personal,{filter:Filtrar_Buscar1,style: PersonalizarBusquedas, onEachFeature}).addTo(mapa),
+	capa_buscar1=L.geoJSON(parcelas,{filter:Filtrar_Buscar2, style:PersonalizarBusquedas, onEachFeature}).addTo(mapa);
+	capa_buscar.remove();
+	};
+	mapa.flyToBounds(capa_buscar.getBounds(),18);
+	oficina="";
+	coincidencia="";
+	sector="";
+	if (Object.keys(capa_buscar).length !==0 || Object.keys(capa_buscar1).length !==0) {document.getElementById("quitartodo").style.display="inline"};
 };
 
 <!--Funcion para resetear todo-->
-function resetearTodo() {
+function ResetearTodo() {
 	capa_parcelas.remove();
 	if (Object.keys(capa_filtrada).length !== 0) {capa_filtrada.remove()};
+	if (Object.keys(capa_buscar).length !==0) {capa_buscar.remove()};
+	if (Object.keys(capa_buscar1).length !==0) {capa_buscar1.remove()};
+	if (lugar !==""){lugar.remove()};
+	if (otro_criterio.value=="Responsable") {
+		document.getElementById("responsable").style.display="none";
+		document.getElementById("sel_responsable").style.display="none"}
+	if (otro_criterio.value=="Clon") {
+		document.getElementById("clon").style.display="none";
+		document.getElementById("sel_clon").style.display="none";}
+	if (otro_criterio.value=="Superficie") {
+		document.getElementById("superficie").style.display="none";
+		document.getElementById("sel_superficie").style.display="none";}
+	if (otro_criterio.value=="Riego") {
+		document.getElementById("riego").style.display="none";
+		document.getElementById("sel_riego").style.display="none";}
+	if (otro_criterio.value=="Plantacion") {
+		document.getElementById("plantacion").style.display="none";
+		document.getElementById("sel_plantacion").style.display="none";}
+	if (otro_criterio.value=="Conduccion") {
+		document.getElementById("conduccion").style.display="none";
+		document.getElementById("sel_conduccion").style.display="none";}
+	if (otro_criterio.value=="Cobertura") {
+		document.getElementById("cobertura").style.display="none";
+		document.getElementById("sel_cobertura").style.display="none";}
+	if (otro_criterio.value=="Especie") {
+		document.getElementById("especie").style.display="none";
+		document.getElementById("sel_especie").style.display="none";}
+	tot_parc=0;
+	sup_total=0;
+	prom_prod=0;
+	anios_prod=0;
 	criterio="";
 	otro_criterio.value="";
 	sel_clon.value="";
@@ -662,26 +773,7 @@ function resetearTodo() {
 	sel_superficie.value="";
 	sel_conduccion.value="";
 	cobertura_vid.value="";
-	if (otro_criterio.value=="Responsable") {
-		document.getElementById("responsable").style.display="none"}
-	if (otro_criterio.value=="Clon") {
-		document.getElementById("clon").style.display="inline"}
-	if (otro_criterio.value=="Superficie") {
-		document.getElementById("superficie").style.display="none"}
-	if (otro_criterio.value=="Riego") {
-		document.getElementById("riego").style.display="inline"}
-	if (otro_criterio.value=="Plantacion") {
-		document.getElementById("plantacion").style.display="none"}
-	if (otro_criterio.value=="Conduccion") {
-		document.getElementById("conduccion").style.display="none"}
-	if (otro_criterio.value=="Cobertura") {
-		document.getElementById("cobertura").style.display="none"}
-	if (otro_criterio.value=="Especie") {
-		document.getElementById("especie").style.display="none"}
-	tot_parc=0;
-	sup_total=0;
-	prom_prod=0;
-	anios_prod=0;
+	encontrar_a.value="";
 	document.getElementById("resumen").innerText=("");
 	document.getElementById("quitartodo").style.display="none";
 	document.getElementById("mostrartodo").style.display="inline";
@@ -689,9 +781,9 @@ function resetearTodo() {
 };
 
 <!-- Funcion para mostrar todas las parcelas-->
-function mostrarTodo() {
-	resetearTodo();
-	capa_parcelas=L.geoJson(parcelas,{style: personalizarPerimetro, onEachFeature}).addTo(mapa);
+function MostrarTodo() {
+	ResetearTodo();
+	capa_parcelas=L.geoJson(parcelas,{style: PersonalizarPerimetro, onEachFeature}).addTo(mapa);
 	document.getElementById("quitartodo").style.display="inline";
 	document.getElementById("mostrartodo").style.display="none";
 	document.getElementById("resumen").innerText=("Datos Estadísticos\n\nCriterio de filtro: Todo"+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha"+"\nPromedio producción anual: "+(prom_prod/anios_prod/sup_total).toFixed(2)+" qq/ha");
@@ -712,7 +804,7 @@ mapa.on('click', function(e) {if (medir_lineal=="si") {
 		lineadistancia=new L.polyline([firstLatLng, secondLatLng], {
         color: 'red'
 		}).addTo(mapa);
-		setTimeout(medirDistancia, 300);
+		setTimeout(MedirDistancia, 300);
     }
 }});
 
@@ -722,7 +814,7 @@ function Medir_Longitud() {
 };
 
 <!--Funcion para medir distancias entre dos puntos-->
-function medirDistancia() {
+function MedirDistancia() {
 	var distancem = mapa.distance(firstLatLng ,secondLatLng).toFixed(2);
 	var distancekm=(distancem/1000).toFixed(2);
 	firstLatLng="";
@@ -735,29 +827,29 @@ function medirDistancia() {
 };
 
 <!--Función para activar el seguimiento en tiempo real y hacer zoom en él-->
-function activar_seguimiento() {
+function Activar_Seguimiento() {
 	if((! navigator.geolocation || ! navigator.onLine) && seguimiento=="si") {
 		alert("Oho...!!! Parece que no tenés activado del GPS y/o no tenés conexión a internet...!!!.-");
 	} else {
 		setInterval(() => {
 		document.getElementById("gps").src="./image/slide_on.jpg";
-		navigator.geolocation.getCurrentPosition(getPosition)
+		navigator.geolocation.getCurrentPosition(GetPosition)
 		}, 2000);
 	};
 };
 
 <!--Función para detener el seguimiento en tiempo real-->
-function desactivar_seguimiento() {
+function Desactivar_Seguimiento() {
 	seguimiento="no";
 	mapa.setView([-33.004058, -68.861730]);
 	mapa.setZoom(16);
-	navigator.geolocation.getCurrentPosition(getPosition);
+	navigator.geolocation.getCurrentPosition(GetPosition);
 	document.getElementById("gps").src="./image/slide_off.jpg";
-	document.getElementById("ubicacion_texto").innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return activar_seguimiento()'><u>Activar Ubicacion</u></p>";
+	document.getElementById("ubicacion_texto").innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return Activar_Seguimiento()'><u>Activar Ubicacion</u></p>";
 };
 
 <!--Función para capturar la ubicación actual-->
-function getPosition(position){
+function GetPosition(position){
 	var lat = position.coords.latitude;
 	var lon = position.coords.longitude;
 	var accuracy = position.coords.accuracy;
@@ -777,12 +869,11 @@ function getPosition(position){
 	if (seguimiento=="si") {
 		mapa.flyToBounds(featureGroup.getBounds());
 		mapa.setView([lat,lon]);
-		//console.log(seguimiento);
 	};
 };
 
 <!--Funcion para mostrar imagen estadísticas en ventana modal-->
-function funcion_modal(imagen, titulo, leyenda, ancho, alto) {
+function Funcion_Modal(imagen, titulo, leyenda, ancho, alto) {
     var left = (screen.weight / 2)-(ancho/2);
     var top = (screen.height / 2)-(alto/2);
 	document.getElementById("titulo").innerText=titulo;
@@ -794,7 +885,7 @@ function funcion_modal(imagen, titulo, leyenda, ancho, alto) {
 };
 
 <!--Funcion para verificar estado de conectividad-->
-function verificarConexion() {
+function VerificarConexion() {
   if (navigator.onLine) {
     conexion="si";
   } else {
@@ -802,8 +893,8 @@ function verificarConexion() {
   }
 };
 
-<!--Función para armar el arreglo de sectores, personas y actividades-->
-function listasectores(feature, layer) {
+<!--Función para armar el arreglo de sectores-->
+function ListaSectores(feature, layer) {
 	if (feature.properties.Cobertura !="Cultivo" && feature.properties.Descripcio !="Vivienda" && feature.properties.Cobertura !="Invernaculo" && feature.properties.Descripcio !="Deposito" && feature.properties.Descripcio !=null) {
 		listabusqueda.push(feature.properties.Descripcio);
 	};
@@ -819,15 +910,33 @@ function listasectores(feature, layer) {
 	if (feature.properties.Cobertura !="Cultivo" && feature.properties.Descripcio !="Vivienda" && feature.properties.Cobertura !="Invernaculo" && feature.properties.Actividad3 !=null) {
 		listabusqueda.push(feature.properties.Actividad3);
 	};
-	//console.log(listabusqueda);
+};
+
+<!--Función para armar el arreglo de personas y especialidades-->
+function ListaPersonas(feature, layer) {
+	if (feature.properties.Persona !=null) {
+		listabusqueda.push(feature.properties.Persona);
+	};
+	if (feature.properties.Especial !=null) {
+		listabusqueda.push(feature.properties.Especial);
+	};
+	if (feature.properties.Especial1 !=null) {
+		listabusqueda.push(feature.properties.Especial1);
+	};
+	if (feature.properties.Especial2 !=null) {
+		listabusqueda.push(feature.properties.Especial2);
+	};
+	if (feature.properties.Ofi_Lab !=null) {
+		listabusqueda.push(feature.properties.Ofi_Lab);
+	};
 };
 
 <!--Función para cargar el listado de sectores, personas y actividades y asignarlo al listbox correspondiente-->
-function armarlistabusqueda(listabusqueda) {
+function ArmarListaBusqueda(listabusqueda) {
 	var select = document.getElementById('encontrar_a');
 	var i;
-	for (i = 0; i < listabusqueda.length; i++) {
-		var opt = listabusqueda[i];
+	for (i = 0; i < listabusquedafiltrada.length; i++) {
+		var opt = listabusquedafiltrada[i];
 		var el = document.createElement("option");
 		el.textContent = opt;
 		el.value = opt;
@@ -835,10 +944,42 @@ function armarlistabusqueda(listabusqueda) {
 	};
 };
 
-geojson = L.geoJson(parcelas, {onEachFeature: listasectores}).addTo(mapa);
-geojson.remove();
-listabusqueda.sort();
-//armarlistabusqueda(listabusqueda);
+<!--Función para cargar el listbox-->
+function CargarListbox() {
+	geojson = L.geoJson(parcelas, {onEachFeature: ListaSectores}).addTo(mapa);
+	geojson.remove();
+	geojson1 = L.geoJson(personal, {onEachFeature: ListaPersonas}).addTo(mapa);
+	geojson1.remove();
+	listabusqueda.sort();
+	listabusquedafiltrada = listabusqueda.filter((elemento, index) => {
+    return listabusqueda.indexOf(elemento) === index;
+	});
+	ArmarListaBusqueda(listabusqueda)
+};
+
+function CopiarAlPortapapeles() {
+	var aux = document.createElement("input");
+	aux.setAttribute("value",  innerHTML="cmauriciogodoy@gmail.com");
+	document.body.appendChild(aux);
+	aux.select();
+	document.execCommand("copy");
+	document.body.removeChild(aux);
+};
+
+function CopiarAlPortapapeles1 () {
+	document.getElementById("Apaisado").innerHTML=("<h3>"+"Por parámetros de configuración de tu dispositivo, es probable que no sea posible hacer un envío semi-automático del mail. En ese caso, abre tu aplicación de correo electrónico y pega el mail que ha sido copiado al portapapeles.-"+"</h3>");
+	document.getElementById("modal_inicial").showModal();
+    let a = document.createElement('a');
+    let link = document.createTextNode("This is link");
+    a.appendChild(link);
+    a.href = "mailto:cmauriciogodoy@gmail.com?subject=SITIO WEB DEL INTA&body=Estimado Mauricio: Deseo hacerte el siguiente aporte como sugerencia/informe de error del sitio web del INTA. (Explicá con el mayor detalle posible tu comentario).-";
+	a.id="a";
+    document.body.appendChild(a);
+	document.getElementById('a').click();
+	document.body.removeChild(a);
+};
+
+CargarListbox();
 
 <!--Captura de eventos de ventana modal de estadisticas-->
 const btncerrarmodalestadisticas=document.querySelector("#btn-cerrar-modal-estadisticas");
@@ -857,8 +998,8 @@ document.getElementById("conduccion").style.display = "none";
 document.getElementById("especie").style.display = "none";
 document.getElementById("mostrartodo").style.display = "none";
 document.getElementById("quitartodo").style.display = "inline";
-verificarConexion();
-capa_parcelas=L.geoJson(parcelas,{style: personalizarPerimetro, onEachFeature}).addTo(mapa);
+VerificarConexion();
+capa_parcelas=L.geoJson(parcelas,{style: PersonalizarPerimetro, onEachFeature}).addTo(mapa);
 if (conexion=="no") {
 	document.getElementById("Conectividad").style.display="inline";
 } else {

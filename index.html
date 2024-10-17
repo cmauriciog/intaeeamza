@@ -402,6 +402,7 @@ var persona="";
 var oficina="";
 var lugar="";
 var ubicacion_real="";
+var borrar_ubicacion_real="";
 var sondeo_posicion="";
 
 <!--Funcion para colorear el fondo según el tipo de coberura (cultivos/edificios)-->
@@ -838,6 +839,9 @@ function activar_seguimiento(seguimiento) {
 		ubicacion_real=setInterval(() => {
 		navigator.geolocation.getCurrentPosition(GetPosition)
 		}, 2000);
+		if (borrar_ubicacion_real !=="") {
+			clearInterval(borrar_ubicacion_real);
+		};
 		document.getElementById("gps").src="./image/slide_on.jpg";
 		document.getElementById("ubicacion_estado").href="javascript:desactivar_seguimiento(seguimiento)";//innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return Desactivar_Seguimiento()'><u>Desactivar Ubicacion</u></p>";
 	};
@@ -846,7 +850,6 @@ function activar_seguimiento(seguimiento) {
 <!--Función para detener el seguimiento en tiempo real-->
 function desactivar_seguimiento(seguimiento) {
 	clearInterval(ubicacion_real);
-	console.log("Vamos a cancelar...!!!");
 	seguimiento="no";
 	mapa.setView([-33.004058, -68.861730]);
 	mapa.setZoom(16);
@@ -860,6 +863,7 @@ function desactivar_seguimiento(seguimiento) {
 			mapa.removeLayer(circulo)
 		}
 	}, 1000);
+	mapa.flyTo(["-33.00598405638592", "-68.85600484779212"],16);
 };
 
 <!--Función para capturar la ubicación actual-->

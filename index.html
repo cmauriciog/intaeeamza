@@ -145,8 +145,8 @@
 	<select id="encontrar_a" name="encontraralgo" data-placeholder="¿Necesitás ubicar una persona o un lugar?. Buscalo acá..." class="form-control chosenbusqueda" value="<%= typeof Casas != 'undefined' ? Casas : '' %>" onchange="EncontrarA(value)">
 		<option value=""></option>
 	</select>
-	<div id="ubicacion_texto" style="font-size:10px; text-align:right; background-color:grey; color:blue;width:80px"><strong>Activar mi ubicación</strong><a id="ubicacion_estado" href="javascript:Activar_Seguimiento(seguimiento)"><img id="gps" src="./image/slide_off.jpg" width="50" height="30"></img></a></div>
-	<img src="image/INTA.png" width="60" height="60"></img>
+	<div id="ubicacion_texto" style="font-size:10px; text-align:right; background-color:grey; color:blue;width:80px"><strong>Activar/Desactivar mi ubicación</strong><a id="ubicacion_estado" href="javascript:activar_seguimiento(seguimiento)"><img id="gps" src="./image/slide_off.jpg" width="50" height="30"></img></a></div>
+	<img src="./image/INTA.png" width="60" height="60"></img>
 </header>
 
 <!--Barra lateral con su formato y elementos-->
@@ -401,6 +401,8 @@ var coincidencia="";
 var persona="";
 var oficina="";
 var lugar="";
+var ubicacion_real="";
+var sondeo_posicion="";
 
 <!--Funcion para colorear el fondo según el tipo de coberura (cultivos/edificios)-->
 function ColorFondo(d) {
@@ -464,7 +466,7 @@ function onEachFeature(feature, layer) {
 	if (feature.properties.Prod_2020 !=null) {anios_prod=anios_prod+1};
 	if (feature.properties.Prod_2021 !=null) {anios_prod=anios_prod+1};
 	<!--Establecer el mini-logo del PopUp de acuerdo al cultivo/uso de la parcela-->
-	if (feature.properties.Variedad=="Ancelotta" || feature.properties.Variedad=="Barbera D'Asty" || feature.properties.Variedad=="Cabernet" || feature.properties.Variedad=="Malbec" || feature.properties.Variedad=="Merlot" || feature.properties.Variedad=="Pinot" || feature.properties.Variedad=="Syrah" || feature.properties.Variedad=="Cabernet Sauvignon") {logo='./image/Uvas_Tintas.jpg'};
+	if (feature.properties.Variedad=="Ancelotta" || feature.properties.Variedad=="Barbera Dasty" || feature.properties.Variedad=="Cabernet" || feature.properties.Variedad=="Malbec" || feature.properties.Variedad=="Merlot" || feature.properties.Variedad=="Pinot" || feature.properties.Variedad=="Syrah" || feature.properties.Variedad=="Cabernet Sauvignon") {logo='./image/Uvas_Tintas.jpg'};
 	if (feature.properties.Variedad=="Chardonnay" || feature.properties.Variedad=="Chenin" || feature.properties.Variedad=="Riesling" || feature.properties.Variedad=="Sauvignon" || feature.properties.Variedad=="Semillon" || feature.properties.Variedad=="Torrontes") {logo='./image/Uvas_Blancas.jpg'};
 	if (feature.properties.Variedad=="Coleccionmesa" || feature.properties.Variedad=="Coleccionvino" || feature.properties.Variedad=="Americanas" || feature.properties.Variedad=="Portainjertos") {logo='./image/Mezcla.jpg'};
 	if (feature.properties.Especie=="Huerta" || feature.properties.Especie=="Hortalizas" ) {logo='./image/Hortalizas.png'};
@@ -827,25 +829,37 @@ function MedirDistancia() {
 };
 
 <!--Función para activar el seguimiento en tiempo real y hacer zoom en él-->
-function Activar_Seguimiento() {
+function activar_seguimiento(seguimiento) {
+	sondeo_posicion=0;
+	seguimiento="si";
 	if((! navigator.geolocation || ! navigator.onLine) && seguimiento=="si") {
 		alert("Oho...!!! Parece que no tenés activado del GPS y/o no tenés conexión a internet...!!!.-");
 	} else {
-		setInterval(() => {
-		document.getElementById("gps").src="./image/slide_on.jpg";
+		ubicacion_real=setInterval(() => {
 		navigator.geolocation.getCurrentPosition(GetPosition)
 		}, 2000);
+		document.getElementById("gps").src="./image/slide_on.jpg";
+		document.getElementById("ubicacion_estado").href="javascript:desactivar_seguimiento(seguimiento)";//innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return Desactivar_Seguimiento()'><u>Desactivar Ubicacion</u></p>";
 	};
 };
 
 <!--Función para detener el seguimiento en tiempo real-->
-function Desactivar_Seguimiento() {
+function desactivar_seguimiento(seguimiento) {
+	clearInterval(ubicacion_real);
+	console.log("Vamos a cancelar...!!!");
 	seguimiento="no";
 	mapa.setView([-33.004058, -68.861730]);
 	mapa.setZoom(16);
-	navigator.geolocation.getCurrentPosition(GetPosition);
 	document.getElementById("gps").src="./image/slide_off.jpg";
-	document.getElementById("ubicacion_texto").innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return Activar_Seguimiento()'><u>Activar Ubicacion</u></p>";
+	document.getElementById("ubicacion_estado").href="javascript:activar_seguimiento(seguimiento)";//innerHTML="<p style='cursor: pointer; color:#0000ff; font:Arial' onclick='return Activar_Seguimiento()'><u>Activar Ubicacion</u></p>";
+	borrar_ubicacion_real=setInterval(() => {
+		if(marcador) {
+			mapa.removeLayer(marcador)
+		}
+		if(circulo) {
+			mapa.removeLayer(circulo)
+		}
+	}, 1000);
 };
 
 <!--Función para capturar la ubicación actual-->
@@ -867,8 +881,10 @@ function GetPosition(position){
 	circulo = L.circle([lat, lon], {radius: accuracy});
 	var featureGroup = L.featureGroup([marcador, circulo]).addTo(mapa);
 	if (seguimiento=="si") {
-		mapa.flyToBounds(featureGroup.getBounds());
-		mapa.setView([lat,lon]);
+		sondeo_posicion=sondeo_posicion+1
+		if (sondeo_posicion==1) {
+			mapa.flyToBounds(featureGroup.getBounds());
+			mapa.setView([lat,lon])};
 	};
 };
 

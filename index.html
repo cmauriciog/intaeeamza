@@ -839,8 +839,9 @@ function activar_seguimiento(seguimiento) {
 		alert("Oho...!!! Parece que no tenés activado del GPS y/o no tenés conexión a internet...!!!.-");
 	} else {
 		ubicacion_real=setInterval(() => {
-		navigator.geolocation.getCurrentPosition(GetPosition)
-		}, 2000);
+		navigator.geolocation.getCurrentPosition(GetPosition,
+			onError, {maximumAge: 0,timeout: 100,enableHighAccuracy:true})
+			}, 500);
 		if (borrar_ubicacion_real !=="") {
 			clearInterval(borrar_ubicacion_real);
 		};

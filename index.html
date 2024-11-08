@@ -113,7 +113,6 @@
 	background-color: #e6550d;
 	cursor: pointer;
 	}
-	</style>
 	<!--Icono para la pestaña del navegador-->
 	<link rel="shortcut icon" href="./image/inta.ico" type="image/x-icon"/>
 	</style>
@@ -288,6 +287,16 @@
 				<button id="mostrartodo" type="button" style="background-color:green" onclick="MostrarTodo()">Mostrar todas las parcelas</button>
 				<p><br></p>
 				<!--Deshabilitar hasta aquí-->
+				<!--Habilitar para la versión pública-->
+				</br>
+				</br>
+				</br>
+				</br>
+				</br>
+				</br>
+				<!--Deshabilitar para la versión pública-->
+				<button id="quitartodo" type="button" style="background-color:red" onclick="ResetearTodo()">Quitar todas las parcelas del mapa</button>
+				<p><br></p>
 				<p style="font-size: 12px; color:blue">Unidades dependientes</p><p></p>
 				<select style="font-size: 12px" id="agencias" onchange="IrAERs(value)">
 					<option value="" ></option>
@@ -298,7 +307,6 @@
 					<option value="Uspallata">Oficina Información Técnica Uspallata</option>
 				</select>
 				<button id="volvereea" type="button" style="background-color:red" onclick="VolverEEA()">Volver al predio de la EEA Mendoza</button>
-				<button id="quitartodo" type="button" style="background-color:red" onclick="ResetearTodo()">Quitar todas las parcelas del mapa</button>
 				<div id="contenedor_resumen" style="background-color:gray">
 					<label id="resumen" style="font-size:12px"><br></label>
 				</div>
@@ -311,6 +319,7 @@
 				<p><img src="image/construcciones.jpg" width="20" height="20">Parcelas con construcciones</img></p>
 				<!--Deshabilitar hasta aquí-->
 				<a style="font-size:12px; color:blue" onclick="CopiarAlPortapapeles(); CopiarAlPortapapeles1()">Hacer un aporte o reportar un error</a>			</div>
+			</div>
 		</nav>
 
 		<!--Dimensionar el tamaño de la pantalla que ocupará el mapa -->
@@ -875,7 +884,7 @@ function activar_seguimiento(seguimiento) {
 	} else {
 		ubicacion_real=setInterval(() => {
 		navigator.geolocation.getCurrentPosition(GetPosition,
-			onError, {maximumAge: 0,timeout: 100,enableHighAccuracy:true})
+			ErrorGeolocalizacion, {maximumAge: 0,timeout: 100,enableHighAccuracy:true})
 			}, 500);
 		if (borrar_ubicacion_real !=="") {
 			clearInterval(borrar_ubicacion_real);
@@ -928,6 +937,16 @@ function GetPosition(position){
 			mapa.flyToBounds(featureGroup.getBounds());
 			mapa.setView([lat,lon])};
 	};
+};
+
+<!--Función de error de geolocalización-->
+function ErrorGeolocalizacion(err) {
+    <!--if (err.code == err.TIMEOUT) 
+        <!--alert("Se ha superado el tiempo de espera");
+    if (err.code == err.PERMISSION_DENIED)     
+        alert("El usuario no permitió informar su posición");
+    if (err.code == err.POSITION_UNAVAILABLE)                 
+        alert("El dispositivo no pudo recuperar la posición actual");
 };
 
 <!--Funcion para mostrar imagen estadísticas en ventana modal-->
@@ -1131,7 +1150,7 @@ document.getElementById("mostrartodo").style.display = "none";
 capa_parcelas=L.geoJson(parcelas,{style: PersonalizarPerimetro, onEachFeature}).addTo(mapa);
 };
 document.getElementById("quitartodo").style.display = "inline";
-document.getElementById("quitartodo").style.display = "none";
+if (version=="publica") {document.getElementById("quitartodo").style.display = "none"};
 document.getElementById("volvereea").style.display = "none";
 VerificarConexion();
 if (conexion=="no") {

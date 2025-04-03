@@ -166,14 +166,14 @@
 						<option value="" ></option>
 						<option value="Ancelotta" >Ancelotta (tinta para vino)</option>
 						<option value="Barbera Dasty" >Barbera D'Asty (tinta para vino)</option>
-						<option value="Cabernet">Cabernet (tinta para vino)</option>
+						<option value="Bonarda" >Bonarda (tinta para vino)</option>
+						<option value="Cabernet Sauvignon">Cabernet Sauvignon (tinta para vino)</option>
 						<option value="Chardonnay" >Chardonnay (blanca para vino)</option>
 						<option value="Chenin" >Chenin (blanca para vino)</option>
 						<option value="Malbec" >Malbec (tinta para vino)</option>
 						<option value="Merlot" >Merlot (tinta para vino)</option>
 						<option value="Pinot" >Pinot (tinta para vino)</option>
 						<option value="Riesling" >Riesling (blanca para vino)</option>
-						<option value="Sauvignon" >Sauvignon (blanca para vino)</option>
 						<option value="Semillon" >Semillón (blanca para vino)</option>
 						<option value="Syrah" >Syrah (tinta para vino)</option>
 						<option value="Torrontes" >Torrontés (blanca para vino)</option>
@@ -489,7 +489,7 @@ function onEachFeature(feature, layer) {
 	if (feature.properties.Prod_2020 !=null) {anios_prod=anios_prod+1};
 	if (feature.properties.Prod_2021 !=null) {anios_prod=anios_prod+1};
 	<!--Establecer el mini-logo del PopUp de acuerdo al cultivo/uso de la parcela-->
-	if (feature.properties.Variedad=="Ancelotta" || feature.properties.Variedad=="Barbera Dasty" || feature.properties.Variedad=="Cabernet" || feature.properties.Variedad=="Malbec" || feature.properties.Variedad=="Merlot" || feature.properties.Variedad=="Pinot" || feature.properties.Variedad=="Syrah" || feature.properties.Variedad=="Cabernet Sauvignon") {logo='./image/Uvas_Tintas.jpg'};
+	if (feature.properties.Variedad=="Ancelotta" || feature.properties.Variedad=="Barbera Dasty" || feature.properties.Variedad=="Bonarda" || feature.properties.Variedad=="Cabernet" || feature.properties.Variedad=="Malbec" || feature.properties.Variedad=="Merlot" || feature.properties.Variedad=="Pinot" || feature.properties.Variedad=="Syrah" || feature.properties.Variedad=="Cabernet Sauvignon") {logo='./image/Uvas_Tintas.jpg'};
 	if (feature.properties.Variedad=="Chardonnay" || feature.properties.Variedad=="Chenin" || feature.properties.Variedad=="Riesling" || feature.properties.Variedad=="Sauvignon" || feature.properties.Variedad=="Semillon" || feature.properties.Variedad=="Torrontes") {logo='./image/Uvas_Blancas.jpg'};
 	if (feature.properties.Variedad=="Variedades de mesa" || feature.properties.Variedad=="Coleccion vinificacion" || feature.properties.Variedad=="Coleccion varietal" || feature.properties.Variedad=="Coleccion criollas" || feature.properties.Variedad=="Americanas" || feature.properties.Variedad=="Portainjertos") {logo='./image/Mezcla.jpg'};
 	if (feature.properties.Especie=="Huerta" || feature.properties.Especie=="Hortalizas" ) {logo='./image/Hortalizas.png'};
@@ -658,9 +658,10 @@ function BuscarOtro(valor) {
 function Filtrar_Vid(feature) {
 	criterio="";
 	capa_parcelas.remove();
-	var cadenabusqueda=cobertura_vid.value;
-	var criterio = new RegExp(cadenabusqueda, "gi");
-	if (cobertura_vid.value !="") {if (feature.properties.Variedad==cobertura_vid.value) return true; document.getElementById("resumen").innerText=("Datos Estadísticos\nCriterio de filtro: Vid\nVariedad "+cobertura_vid.value+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha"+"\nPromedio producción anual: "+(prom_prod/anios_prod/sup_total).toFixed(2)+" qq/ha")};
+	var busqueda=cobertura_vid.value;
+	var criterio = new RegExp(busqueda, "i");
+	if (cobertura_vid.value !="") {if (criterio.test(feature.properties.Variedad)) return true; document.getElementById("resumen").innerText=("Datos Estadísticos\nCriterio de filtro: Vid\nVariedad "+cobertura_vid.value+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha"+"\nPromedio producción anual: "+(prom_prod/anios_prod/sup_total).toFixed(2)+" qq/ha")};
+	//if (cobertura_vid.value !="") {if (feature.properties.Variedad==cobertura_vid.value) return true; document.getElementById("resumen").innerText=("Datos Estadísticos\nCriterio de filtro: Vid\nVariedad "+cobertura_vid.value+"\nCantidad de parcelas: "+tot_parc+"\nSuperficie: "+sup_total.toFixed(2)+" ha"+"\nPromedio producción anual: "+(prom_prod/anios_prod/sup_total).toFixed(2)+" qq/ha")};
 	};
 
 <!--Funcion para filtrado general-->	

@@ -113,6 +113,20 @@
 	background-color: #e6550d;
 	cursor: pointer;
 	}
+	#mapa {
+	  width:100%;
+	  height:90vh;
+	  border: 0.5cm solid red;
+	  padding: 0px;
+	  margin: 0px;
+      /*width: 100%;*/
+      /*height: 100vh; /* 100% de la altura de la ventana */*/
+    }
+	@media (max-width: 768px) {
+      #mapa {
+        height: 70vh; /* Menor altura en pantallas pequeñas */
+      }
+    }
 	</style>
 	<!--Icono para la pestaña del navegador-->
 	<link rel="shortcut icon" href="./image/inta.ico" type="image/x-icon"/>
@@ -324,7 +338,8 @@
 
 		<!--Dimensionar el tamaño de la pantalla que ocupará el mapa -->
 		<main class="col-md-9 ms-sm-auto col-lg-10">
-			<div id="mapa" style="width:100%;height:560px;"></div>
+			<!--<div id="mapa" style="width:100%;height:560px;border: 0.5cm solid red;padding: 0px;margin: 0px;"></div>-->
+			<div id="mapa"></div> <!--style="width:100%;height:90vh;border: 0.5cm solid red;padding: 0px;margin: 0px;"></div>-->
 		</main>
 	</div>
 </div>
@@ -379,6 +394,7 @@ var CapasBase = {
 var mapa = L.map('mapa', {editable:true,
 	center: ["-33.00598405638592", "-68.85600484779212"],
 	zoom: 16,
+	maxZoom: 18,
 	layers: [googlesatelite]
 });
 

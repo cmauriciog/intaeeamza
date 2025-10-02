@@ -23,30 +23,27 @@
   <p id="msg"></p>
 
 <script>
+  // 👇 Pega aquí la URL de tu Web App de Google Apps Script (termina en /exec)
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1qL0ZBS35740T6aDgKtW5zR7p-iVVeLcPulgM-9fkynNlM-ValdKGJVaryUxyXp41/exec";
 
   async function enviar() {
-    const nombre = document.getElementById("nombre").value;
-    const territorio = document.getElementById("territorio").value;
-    const fecha = document.getElementById("fecha").value;
-
-    const data = { nombre, territorio, fecha };
+    const formData = new FormData();
+    formData.append("nombre", document.getElementById("nombre").value);
+    formData.append("territorio", document.getElementById("territorio").value);
+    formData.append("fecha", document.getElementById("fecha").value);
 
     try {
-      const res = await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      });
-
+      const res = await fetch(SCRIPT_URL, { method: "POST", body: formData });
       const result = await res.json();
+
       document.getElementById("msg").textContent =
-        "Guardado ✔️ en fila " + result.row;
+        "✔️ Guardado en fila " + result.row;
     } catch (err) {
-      document.getElementById("msg").textContent = "Error al enviar ❌";
+      document.getElementById("msg").textContent = "❌ Error al enviar";
       console.error(err);
     }
   }
 </script>
 </body>
 </html>
+

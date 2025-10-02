@@ -1,49 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Enviar a Google Sheets</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 30px; }
-    input, button { padding: 8px; margin: 5px 0; }
-  </style>
-</head>
+<head><meta charset="utf-8"><title>Test Sheets</title></head>
 <body>
-  <h2>Formulario</h2>
-  <label>Nombre:</label><br>
-  <input id="nombre" type="text"><br>
-
-  <label>Territorio:</label><br>
-  <input id="territorio" type="text"><br>
-
-  <label>Fecha:</label><br>
-  <input id="fecha" type="date"><br><br>
-
-  <button onclick="enviar()">Guardar en Sheets</button>
-  <p id="msg"></p>
+  <label>Nombre: <input id="nombre"></label><br>
+  <label>Territorio: <input id="territorio"></label><br>
+  <label>Fecha: <input id="fecha" type="date"></label><br>
+  <button id="btn">Enviar</button>
+  <pre id="out"></pre>
 
 <script>
-  // 👇 Pega aquí la URL de tu Web App de Google Apps Script (termina en /exec)
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJo4AWhdFKHkUFtApUbNyInkAS4035fzdm_Whnm1O0qOh9cr1QQe0_G5a_YxyGbXsK/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxSULWilNYI--yyZn42yHhhnImG1GogGXQ-Y5GzLsyhkz5VNcdI4RYHmhyriervmsTX/exec";
 
-  async function enviar() {
-    const formData = new FormData();
-    formData.append("nombre", document.getElementById("nombre").value);
-    formData.append("territorio", document.getElementById("territorio").value);
-    formData.append("fecha", document.getElementById("fecha").value);
+document.getElementById('btn').addEventListener('click', async () => {
+  const out = document.getElementById('out');
+  out.textContent = 'Enviando...';
+  const fd = new FormData();
+  fd.append('nombre', document.getElementById('nombre').value);
+  fd.append('territorio', document.getElementById('territorio').value);
+  fd.append('fecha', document.getElementById('fecha').value);
 
-    try {
-      const res = await fetch(SCRIPT_URL, { method: "POST", body: formData });
-      const result = await res.json();
-
-      document.getElementById("msg").textContent =
-        "✔️ Guardado en fila " + result.row;
-    } catch (err) {
-      document.getElementById("msg").textContent = "❌ Error al enviar";
-      console.error(err);
-    }
+  try {
+    const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
+    const text = await res.text();
+    out.textContent = 'HTTP ' + res.status + '\\n' + text;
+    try { out.textContent += '\\nPARSE: ' + JSON.stringify(JSON.parse(text)); } catch(e){}
+  } catch (err) {
+    out.textContent = 'Fetch error: ' + err;
+    console.error(err);
   }
+});
 </script>
 </body>
 </html>
-

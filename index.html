@@ -1,67 +1,52 @@
-<!-- form.html -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Enviar a Google Sheets</title>
-    <style>
-      body { font-family: Arial, sans-serif; max-width:420px; margin:30px auto; }
-      label { display:block; margin-top:10px; }
-      input, button { width:100%; padding:8px; margin-top:6px; box-sizing:border-box; }
-      .msg { margin-top:12px; }
-    </style>
-  </head>
-  <body>
-    <h3>Guardar (Nombre, Fecha, Número)</h3>
-    <form id="frm">
-      <label>Nombre
-        <input id="name" name="name" required />
-      </label>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Enviar a Google Sheets</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    input, button { padding: 8px; margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <h2>Formulario</h2>
+  <label>Nombre:</label><br>
+  <input id="nombre" type="text"><br>
 
-      <label>Fecha
-        <input id="date" name="date" type="date" required />
-      </label>
+  <label>Territorio:</label><br>
+  <input id="territorio" type="text"><br>
 
-      <label>Número
-        <input id="number" name="number" type="number" required />
-      </label>
+  <label>Fecha:</label><br>
+  <input id="fecha" type="date"><br><br>
 
-      <button type="submit">Enviar</button>
-    </form>
+  <button onclick="enviar()">Guardar en Sheets</button>
+  <p id="msg"></p>
 
-    <div class="msg" id="msg"></div>
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1qL0ZBS35740T6aDgKtW5zR7p-iVVeLcPulgM-9fkynNlM-ValdKGJVaryUxyXp41/exec";
 
-    <script>
-      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby1qL0ZBS35740T6aDgKtW5zR7p-iVVeLcPulgM-9fkynNlM-ValdKGJVaryUxyXp41/exec'; // p.ej. https://script.google.com/macros/s/XXXXX/exec
-      const SECRET_TOKEN = '6379'; // debe ser el mismo que en Code.gs
+  async function enviar() {
+    const nombre = document.getElementById("nombre").value;
+    const territorio = document.getElementById("territorio").value;
+    const fecha = document.getElementById("fecha").value;
 
-      document.getElementById('frm').addEventListener('submit', function(e){
-        e.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const date = document.getElementById('date').value; // ISO yyyy-mm-dd
-        const number = document.getElementById('number').value;
+    const data = { nombre, territorio, fecha };
 
-        const payload = { name, date, number, token: SECRET_TOKEN };
-
-        fetch(WEB_APP_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-        .then(r => r.json())
-        .then(res => {
-          if (res.result === 'success') {
-            document.getElementById('msg').innerText = 'Guardado en fila ' + res.row;
-            document.getElementById('frm').reset();
-          } else {
-            document.getElementById('msg').innerText = 'Error: ' + (res.message || JSON.stringify(res));
-          }
-        })
-        .catch(err => {
-          document.getElementById('msg').innerText = 'Error de red: ' + err;
-        });
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
       });
-    </script>
-  </body>
+
+      const result = await res.json();
+      document.getElementById("msg").textContent =
+        "Guardado ✔️ en fila " + result.row;
+    } catch (err) {
+      document.getElementById("msg").textContent = "Error al enviar ❌";
+      console.error(err);
+    }
+  }
+</script>
+</body>
 </html>

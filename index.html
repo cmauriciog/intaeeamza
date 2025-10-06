@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="es">
-<head><meta charset="utf-8"><title>Test Sheets</title></head>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Contador con Google Sheet</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    button { font-size: 18px; padding: 10px 20px; }
+  </style>
+</head>
 <body>
-  <label>Nombre: <input id="nombre"></label><br>
-  <label>Territorio: <input id="territorio"></label><br>
-  <label>Fecha: <input id="fecha" type="date"></label><br>
-  <button id="btn">Enviar</button>
-  <pre id="out"></pre>
+  <h2>Contador conectado a Google Sheets</h2>
+  <p>Valor leído y actualizado: <span id="valor">Cargando...</span></p>
+  <button onclick="actualizar()">Sumar y mostrar</button>
 
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxSULWilNYI--yyZn42yHhhnImG1GogGXQ-Y5GzLsyhkz5VNcdI4RYHmhyriervmsTX/exec";
+  <script>
+    const urlScript = 'https://script.google.com/macros/s/AKfycbzxEEOaorMjbnZ2SWZnrYzNr3-BxodFDWtew3NkFpTGoPofpAmXYQvBAUmG9DxxAnhSiw/exec'; // tu URL aquí
 
-document.getElementById('btn').addEventListener('click', async () => {
-  const out = document.getElementById('out');
-  out.textContent = 'Enviando...';
-  const fd = new FormData();
-  fd.append('nombre', document.getElementById('nombre').value);
-  fd.append('territorio', document.getElementById('territorio').value);
-  fd.append('fecha', document.getElementById('fecha').value);
+    async function actualizar() {
+      try {
+        const res = await fetch(urlScript);
+        const data = await res.json();
+        document.getElementById('valor').textContent = data.nuevoValor;
+        console.log('Valor actualizado:', data.nuevoValor);
+      } catch (err) {
+        console.error('Error:', err);
+      }
+    }
 
-  try {
-    const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
-    const text = await res.text();
-    out.textContent = 'HTTP ' + res.status + '\\n' + text;
-    try { out.textContent += '\\nPARSE: ' + JSON.stringify(JSON.parse(text)); } catch(e){}
-  } catch (err) {
-    out.textContent = 'Fetch error: ' + err;
-    console.error(err);
-  }
-});
-</script>
+    // Llama al cargar
+    actualizar();
+  </script>
 </body>
 </html>

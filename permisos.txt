@@ -1,2 +1,0 @@
-var contrasenias="INTAEEAMza";
-var usuarios=["montoya.marcos", "godoy.claudio", "ferrari.florencia", "gamboa.dante", "dalmasso.julieta", "catania.anibal"];

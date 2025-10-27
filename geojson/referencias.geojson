@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "referencias",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Nombre": "Feria" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ -68.766653183005744, -32.920619875947089 ] ] } },
+{ "type": "Feature", "properties": { "Nombre": "Atomo" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ -68.779205442462796, -32.921436668455513 ] ] } },
+{ "type": "Feature", "properties": { "Nombre": "YPF" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ -68.790590049877352, -32.921742963702556 ] ] } },
+{ "type": "Feature", "properties": { "Nombre": "YPF" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ -68.792584788783302, -32.931870529383495 ] ] } },
+{ "type": "Feature", "properties": { "Nombre": "Salón del Reino" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ -68.771552877395862, -32.911013182434587 ] ] } }
+]
+}

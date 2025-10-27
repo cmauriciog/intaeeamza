@@ -1,0 +1,62 @@
+var puntosencuentro=[
+	{
+		"Lugar": "Candia",
+		"Coordenadas": ("-32.9271784040656, -68.77929253110719"),
+	},
+	{
+		"Lugar": "Centro de Salud",
+		"Coordenadas": ("-32.92455476453651, -68.78291540227356"),
+	},
+	{
+		"Lugar": "Curupaiti y Castro",
+		"Coordenadas": ("-32.91476063913682, -68.78094805274246"),
+	},
+	{
+		"Lugar": "Curupaiti y Elpidio Gonzalez",
+		"Coordenadas": ("-32.921681917025076, -68.78501825389513"),
+	},
+	{
+		"Lugar": "Elpidio Gonzalez y 9 de Julio",
+		"Coordenadas": ("-32.92207018042923, -68.77769634296024"),
+	},
+	{
+		"Lugar": "Galdames",
+		"Coordenadas": ("-32.92696736101649, -68.77923305642479"),
+	},
+	{
+		"Lugar": "Gutierrez",
+		"Coordenadas": ("-32.928660528030896, -68.78422772358937"),
+	},
+	{
+		"Lugar": "Hector Ortiz",
+		"Coordenadas": ("-32.92758665925057, -68.77950461158336"),
+	},
+	{
+		"Lugar": "Jose Ortiz",
+		"Coordenadas": ("-32.92339567682657, -68.78762014723138"),
+	},
+	{
+		"Lugar": "Jose Quiroga",
+		"Coordenadas": ("-32.930167808449994, -68.77368698422505"),
+	},
+	{
+		"Lugar": "Pedro Goyena y 9 de Julio",
+		"Coordenadas": ("-32.926680005934806, -68.780344729374"),
+	},
+	{
+		"Lugar": "Pedro Goyena y Tapon Moyano",
+		"Coordenadas": ("-32.92810638162819, -68.77357763216914"),
+	},
+	{
+		"Lugar": "Reyes",
+		"Coordenadas": ("-32.92640105700312, -68.78554342407905"),
+	},
+	{
+		"Lugar": "Tapon Moyano y Boulevard",
+		"Coordenadas": ("-32.92558694526941, -68.77226588727734"),
+	},
+	{
+		"Lugar": "Tapon Moyano y San Francisco del Monte",
+		"Coordenadas": ("-32.93374695026788, -68.77686048989392"),
+	},
+];

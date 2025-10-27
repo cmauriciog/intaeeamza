@@ -1,0 +1,2 @@
+var usuarios="SVN";
+var contrasenias=6379;

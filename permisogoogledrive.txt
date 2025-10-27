@@ -1,0 +1,2 @@
+var driveterritorios="https://script.google.com/macros/s/AKfycbyuIL9NjRfXYEZyHjFRSFVXM92YXc0YIpEmqgWh55NuhTf0WiVV6a5TACB7B-VPtDM/exec";
+var drivenovisitar="https://script.google.com/macros/s/AKfycbwO-iXm3G7Ds76K9W44ucbx-Gmd42LEHMgoMTruin3AiBa_ns2KzlnkKXX88ZlsPN50Ww/exec";

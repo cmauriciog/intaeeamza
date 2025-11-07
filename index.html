@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Enviar datos a Sheets</title>
+</head>
 <body>
-  <button onclick="enviar()">Enviar</button>
 
-  <script>
-  function enviar() {
-    fetch("https://script.google.com/macros/s/AKfycbyyJ9GMaNQhoOj4IvHO5d06QuI6-7tG5M86BlUvCtfXsxNOgFUz1YJ-fnJ3I6XGGOUf/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        cong: "A001",
-        dispositivo: "B"
-      })
-    })
-    .then(r => r.json())
-    .then(d => console.log(d))
-    .catch(err => console.error("ERROR:", err));
-  }
-  </script>
+<input type="text" id="cong" placeholder="Cong">
+<select id="dispositivo">
+  <option value="B">B</option>
+  <option value="C">C</option>
+  <option value="D">D</option>
+</select>
+
+<button onclick="enviar()">Enviar</button>
+
+<div id="r"></div>
+
+<script>
+function enviar() {
+  const cong = document.getElementById("cong").value.trim();
+  const dispositivo = document.getElementById("dispositivo").value;
+
+  fetch("https://script.google.com/macros/s/AKfycbzfygi8q8dq8vc8nNooB98YpuZEXCbmqfgWYMePXqLpjec_KyVkuHdGJrrYRcBCuiyA/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cong, dispositivo })
+  })
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("r").innerText = JSON.stringify(data, null, 2);
+  })
+  .catch(err => {
+    document.getElementById("r").innerText = "Error: " + err;
+  });
+}
+</script>
+
 </body>
 </html>

@@ -22,7 +22,7 @@ function enviar() {
   const cong = document.getElementById("cong").value.trim();
   const dispositivo = document.getElementById("dispositivo").value;
 
-  fetch("https://script.google.com/macros/s/AKfycbw3dHEdPtBtl0PLRR2zy3DJHODM3-k9Ww3HrDFsh6wNqlGVK9KGR3136Bub5RGGnC6v/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbz4F_iVDOUrGn3j6UcKIrsg7WAN5xGVRwc8Lqua9An2zE1znx3D4qLU2JO8xDOY1oan/exec", {
     method: "POST",
     body: JSON.stringify({ cong, dispositivo }),
     headers: { "Content-Type": "application/json" }

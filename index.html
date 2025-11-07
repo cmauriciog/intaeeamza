@@ -1,109 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Enviar datos a WebApp (POST JSON)</title>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin: 24px; background:#f7f7fb; color:#111; }
-    .card { background: #fff; border-radius: 10px; padding: 18px; box-shadow: 0 6px 18px rgba(20,20,40,0.06); max-width:720px; margin:0 auto; }
-    label { display:block; margin-top:12px; font-weight:600; }
-    input[type="text"], input[type="url"] { width:100%; padding:8px 10px; margin-top:6px; border-radius:6px; border:1px solid #ddd; box-sizing:border-box; }
-    button { margin-top:14px; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; font-weight:700; }
-    .btn-send { background:#2563eb; color:#fff; }
-    .btn-clear { background:#e2e8f0; color:#111; margin-left:8px; }
-    pre { background:#0f172a; color:#e6eef8; padding:12px; border-radius:8px; overflow:auto; max-height:260px; }
-    .note { font-size:0.9rem; color:#555; margin-top:8px; }
-    .row { display:flex; gap:8px; align-items:center; }
-    @media (max-width:540px){ .row{flex-direction:column; align-items:stretch;} }
-  </style>
+<meta charset="UTF-8">
+<title>Enviar datos a Sheets</title>
 </head>
 <body>
-  <div class="card">
-    <h2>Enviar JSON a WebApp (fetch POST)</h2>
-    <p class="note">Rellena la URL de tu WebApp de Google Apps Script (o cualquier endpoint que acepte JSON) y los campos que quieras enviar.</p>
 
-    <label for="url">URL de la WebApp</label>
-    <input id="url" type="url" value="https://script.google.com/macros/s/AKfycbyosftut4BWS15Kkq8JI4fLfBTWvC9l_sK6OARpSv2gGvFT2eNsMnpCPDvRyP8QHG0Z/exec">
+<input type="text" id="cong" placeholder="Cong">
+<select id="dispositivo">
+  <option value="B">B</option>
+  <option value="C">C</option>
+  <option value="D">D</option>
+</select>
 
-    <label for="cong">cong</label>
-    <input id="cong" type="text" placeholder="Juan" value="Juan">
+<button onclick="enviar()">Enviar</button>
 
-    <label for="columna">columna</label>
-    <input id="columna" type="text" placeholder="C" value="C">
+<div id="r"></div>
 
-    <div class="row">
-      <button id="send" class="btn-send">Enviar</button>
-      <button id="clear" class="btn-clear" type="button">Limpiar salida</button>
-    </div>
+<script>
+function enviar() {
+  const cong = document.getElementById("cong").value.trim();
+  const dispositivo = document.getElementById("dispositivo").value;
 
-    <p class="note">Respuesta / errores:</p>
-    <pre id="output">Aquí aparecerá la respuesta JSON o el error.</pre>
+  fetch("https://script.google.com/macros/s/AKfycbyosftut4BWS15Kkq8JI4fLfBTWvC9l_sK6OARpSv2gGvFT2eNsMnpCPDvRyP8QHG0Z/exec", {
+    method: "POST",
+    body: JSON.stringify({ cong, dispositivo }),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(r => r.json())
+  .then(r => document.getElementById("r").innerText = JSON.stringify(r))
+  .catch(err => document.getElementById("r").innerText = err);
+}
+</script>
 
-    <p class="note"><strong>Nota:</strong> Si usas una WebApp de Google Apps Script recuerda desplegarla como "Anyone, even anonymous" (o gestionar CORS/headers) para que el `fetch` desde un navegador funcione.</p>
-  </div>
-
-  <script>
-    const inpUrl = document.getElementById('url');
-    const inpCong = document.getElementById('cong');
-    const inpCol = document.getElementById('columna');
-    const btnSend = document.getElementById('send');
-    const btnClear = document.getElementById('clear');
-    const output = document.getElementById('output');
-
-    function log(msg){
-      if (typeof msg === 'object') {
-        output.textContent = JSON.stringify(msg, null, 2);
-      } else {
-        output.textContent = String(msg);
-      }
-    }
-
-    btnSend.addEventListener('click', async () => {
-      const URL = inpUrl.value.trim();
-      if (!URL) {
-        log('Por favor ingresa la URL de la WebApp.');
-        return;
-      }
-
-      const payload = {
-        cong: inpCong.value,
-        columna: inpCol.value
-      };
-
-      log('Enviando...');
-
-      try {
-        const res = await fetch(URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          // mode: 'cors' // generalmente por defecto; habilita si necesitas control explícito
-        });
-
-        // Si la respuesta no es JSON pero quieres el texto:
-        const contentType = res.headers.get('content-type') || '';
-        if (!res.ok) {
-          // intenta leer el cuerpo para mostrar error
-          const text = await res.text();
-          log({ status: res.status, ok: res.ok, body: text });
-          return;
-        }
-
-        if (contentType.includes('application/json')) {
-          const data = await res.json();
-          log(data);
-        } else {
-          const text = await res.text();
-          // mostrar texto porque no vino JSON
-          log({ status: res.status, body: text });
-        }
-      } catch (err) {
-        log({ error: String(err) });
-      }
-    });
-
-    btnClear.addEventListener('click', () => { output.textContent = ''; });
-  </script>
 </body>
 </html>

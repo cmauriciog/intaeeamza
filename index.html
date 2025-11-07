@@ -22,14 +22,17 @@ function enviar() {
   const cong = document.getElementById("cong").value.trim();
   const dispositivo = document.getElementById("dispositivo").value;
 
-  fetch("https://script.google.com/macros/s/AKfycbwj1TO3-QsXPTM9c0xsVCMlZiNjU470crz4VMA9q6OyxoLYc1SjpTpYIcnkElSG75iO/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ cong, dispositivo })
+  fetch("https://script.google.com/macros/s/AKfycbz25y-FvOvZGa66IwHVEEWvyJlr2M_EUbBivi9CNMztNN5B6jcTEfxo-BS6ClVLacyY/exec", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    cong: "123",
+    dispositivo: "B"
   })
-  .then(r => r.json())
-  .then(data => { document.getElementById("r").textContent = JSON.stringify(data, null, 2); })
-  .catch(err => { document.getElementById("r").textContent = "ERROR: " + err; });
+})
+.then(r => r.json())
+.then(data => console.log("Respuesta:", data))
+.catch(err => console.error(err));
 }
 </script>
 

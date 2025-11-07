@@ -15,25 +15,21 @@
 
 <button onclick="enviar()">Enviar</button>
 
-<div id="r"></div>
+<pre id="r"></pre>
 
 <script>
 function enviar() {
   const cong = document.getElementById("cong").value.trim();
   const dispositivo = document.getElementById("dispositivo").value;
 
-  fetch("https://script.google.com/macros/s/AKfycbzfygi8q8dq8vc8nNooB98YpuZEXCbmqfgWYMePXqLpjec_KyVkuHdGJrrYRcBCuiyA/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwj1TO3-QsXPTM9c0xsVCMlZiNjU470crz4VMA9q6OyxoLYc1SjpTpYIcnkElSG75iO/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ cong, dispositivo })
   })
   .then(r => r.json())
-  .then(data => {
-    document.getElementById("r").innerText = JSON.stringify(data, null, 2);
-  })
-  .catch(err => {
-    document.getElementById("r").innerText = "Error: " + err;
-  });
+  .then(data => { document.getElementById("r").textContent = JSON.stringify(data, null, 2); })
+  .catch(err => { document.getElementById("r").textContent = "ERROR: " + err; });
 }
 </script>
 

@@ -1,51 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Enviar Predicado</title>
-<style>
-  body { font-family: Arial; padding: 20px; }
-  #modalreporte { 
-    position: fixed; 
-    top: 20%; left: 50%; transform: translateX(-50%);
-    background: #fff; padding: 20px; border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,.3);
-  }
-</style>
-</head>
+<head><meta charset="utf-8"><title>Test</title></head>
 <body>
+  <button id="btnenviar">Enviar esto...</button>
+  <p id="enviando"></p>
 
-<div id="modalreporte">
-  <h3>Enviar reporte de predicado</h3>
-  <label>Mapa:</label><br>
-  <input type="text" id="nombremapa" placeholder="Nombre"><br><br>
-  <label>Dispositivo:</label><br>
-  <input type="text" id="dispositivo" placeholder="Dispositivo"><br><br>
-  <button id="btnenviar">Enviar</button>
-  <p id="enviando" style="margin-top:10px;"></p>
-</div>
+  <script>
+    const url_script = "https://script.google.com/macros/s/AKfycbx2cyWvr7UDUEcQ561I2v-kKZ_11B3YMfyxaONO4b5i7p3ndHRblhlSke08AOoIKmi2iA/exec";
 
-<script>
-  const url_script = "https://script.google.com/macros/s/AKfycbxEtKyJM6nj_Mhe0113snG6XHBmTegwPNf5CnKEVHqL3iANgYJmbICIBV2IObVPhj_T7g/exec";
-  document.getElementById('btnenviar').addEventListener('click', async () => {
-    const fd = new FormData();
-    fd.append('mapa', 'SVN');
-    fd.append('dispositivo', 'celular');
-    const enviando = document.getElementById('enviando');
-    enviando.textContent = "Enviando información...";
-    try {
-      const res = await fetch(url_script, { method: 'POST', body: fd });
-      const text = await res.text();
-      enviando.textContent = "Información enviada. Muchas gracias....!!!";
-      setTimeout(() => {
-		alert("Chas gracias...!!!!");
-      }, 5000);
-    } catch (err) {
-      enviando.textContent =
-        "Hubo un error; por lo que no se pudo enviar la información. Por favor, intentalo nuevamente.-";
-    }
-  });
-</script>
+    document.getElementById('btnenviar').addEventListener('click', async () => {
+      const enviando = document.getElementById('enviando');
+      enviando.textContent = "Enviando...";
 
+      try {
+        const res = await fetch(url_script, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ mapa: "SVN", dispositivo: "celular" })
+        });
+
+        const text = await res.text();
+        enviando.textContent = `Respuesta: ${res.status} — ${text}`;
+
+      } catch (err) {
+        enviando.textContent = "Error fetch: " + err.message;
+      }
+    });
+  </script>
 </body>
 </html>

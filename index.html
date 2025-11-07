@@ -2,38 +2,93 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Enviar datos a Sheets</title>
+<title>Enviar Predicado</title>
+<style>
+  body { font-family: Arial; padding: 20px; }
+  #modalreporte { 
+    display: none; 
+    position: fixed; 
+    top: 20%; left: 50%; transform: translateX(-50%);
+    background: #fff; padding: 20px; border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,.3);
+  }
+</style>
 </head>
 <body>
 
-<input type="text" id="cong" placeholder="Cong">
-<select id="dispositivo">
-  <option value="B">B</option>
-  <option value="C">C</option>
-  <option value="D">D</option>
-</select>
+<button onclick="AbrirModalReporte()">Cargar Predicado</button>
 
-<button onclick="enviar()">Enviaremos Otra cosa</button>
+<div id="modalreporte">
+  <h3>Enviar reporte de predicado</h3>
 
-<pre id="r"></pre>
+  <label>Mapa:</label><br>
+  <input type="text" id="nombremapa" placeholder="Nombre"><br><br>
+
+  <label>Dispositivo:</label><br>
+  <input type="text" id="dispositivo" placeholder="Territorio"><br><br>
+
+  <button id="btnenviar">Enviar</button>
+  <button onclick="CerrarModalReporte()">Cerrar</button>
+
+  <p id="enviando" style="margin-top:10px;"></p>
+</div>
 
 <script>
-function enviar() {
-  //const cong = document.getElementById("cong").value.trim();
-  //const dispositivo = document.getElementById("dispositivo").value;
+  const url_script = "https://script.google.com/macros/s/AKfycbxEtKyJM6nj_Mhe0113snG6XHBmTegwPNf5CnKEVHqL3iANgYJmbICIBV2IObVPhj_T7g/exec";
 
-  fetch("https://script.google.com/macros/s/AKfycbyaQtGhmbPWJQ40sO1B5ZN8Wm20jVOzQJaA7RKjL-PcY2jhXZgWNdtMLWPRnXJswSnF/exec", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    cong: "SVN",
-    dispositivo: "D"
-  })
-})
-.then(r => r.json())
-.then(data => console.log("Respuesta:", data))
-.catch(err => console.error(err));
-}
+  //const partepred = document.getElementById('partepred');
+  //const todopred = document.getElementById('todopred');
+  //const abarcadoInput = document.getElementById('abarcadopredicado');
+
+  // Mostrar input cuando se selecciona "Parcial"
+  //partepred.addEventListener("change", () => abarcadoInput.style.display = "block");
+  //todopred.addEventListener("change", () => abarcadoInput.style.display = "none");
+
+  //function AbrirModalReporte() {
+  //  document.getElementById("modalreporte").style.display = "block";
+  //}
+  //function CerrarModalReporte() {
+    //document.getElementById("modalreporte").style.display = "none";
+  //}
+
+  document.getElementById('btnenviar').addEventListener('click', async () => {
+
+    const fd = new FormData();
+    //fd.append('fecha', document.getElementById('fechapredicado').value);
+    fd.append('mapa', document.getElementById('nombremapa').value);
+    fd.append('territorio', document.getElementById('dispositivo').value);
+
+    //if (todopred.checked) {
+    //  fd.append('abarcado', "Completo");
+    //}
+    //if (partepred.checked) {
+    //  fd.append('abarcado', document.getElementById('abarcadopredicado').value);
+    //}
+
+    const enviando = document.getElementById('enviando');
+    enviando.textContent = "Enviando información...";
+
+    try {
+      const res = await fetch(url_script, { method: 'POST', body: fd });
+      const text = await res.text();
+
+      enviando.textContent = "Información enviada. Muchas gracias....!!!";
+
+      setTimeout(() => {
+        //document.getElementById('nombrepredicado').value = "";
+        //document.getElementById('fechapredicado').value = "";
+        //document.getElementById('territoriopredicado').value = "";
+        //document.getElementById('abarcadopredicado').value = "";
+        //enviando.textContent = "";
+        //CerrarModalReporte();
+		alert("Chas gracias...!!!!");
+      }, 5000);
+
+    } catch (err) {
+      enviando.textContent =
+        "Hubo un error; por lo que no se pudo enviar la información. Por favor, intentalo nuevamente.-";
+    }
+  });
 </script>
 
 </body>

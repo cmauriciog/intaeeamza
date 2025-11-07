@@ -6,7 +6,6 @@
 <style>
   body { font-family: Arial; padding: 20px; }
   #modalreporte { 
-    /*display: none; */
     position: fixed; 
     top: 20%; left: 50%; transform: translateX(-50%);
     background: #fff; padding: 20px; border-radius: 10px;
@@ -16,74 +15,31 @@
 </head>
 <body>
 
-<!--<button onclick="AbrirModalReporte()">Cargar Predicado</button>-->
-
 <div id="modalreporte">
   <h3>Enviar reporte de predicado</h3>
-
   <label>Mapa:</label><br>
   <input type="text" id="nombremapa" placeholder="Nombre"><br><br>
-
   <label>Dispositivo:</label><br>
-  <input type="text" id="dispositivo" placeholder="Territorio"><br><br>
-
+  <input type="text" id="dispositivo" placeholder="Dispositivo"><br><br>
   <button id="btnenviar">Enviar</button>
-  <!--<button onclick="CerrarModalReporte()">Cerrar</button>-->
-
   <p id="enviando" style="margin-top:10px;"></p>
 </div>
 
 <script>
   const url_script = "https://script.google.com/macros/s/AKfycbxEtKyJM6nj_Mhe0113snG6XHBmTegwPNf5CnKEVHqL3iANgYJmbICIBV2IObVPhj_T7g/exec";
-
-  //const partepred = document.getElementById('partepred');
-  //const todopred = document.getElementById('todopred');
-  //const abarcadoInput = document.getElementById('abarcadopredicado');
-
-  // Mostrar input cuando se selecciona "Parcial"
-  //partepred.addEventListener("change", () => abarcadoInput.style.display = "block");
-  //todopred.addEventListener("change", () => abarcadoInput.style.display = "none");
-
-  //function AbrirModalReporte() {
-  //  document.getElementById("modalreporte").style.display = "block";
-  //}
-  //function CerrarModalReporte() {
-    //document.getElementById("modalreporte").style.display = "none";
-  //}
-
   document.getElementById('btnenviar').addEventListener('click', async () => {
-
     const fd = new FormData();
-    //fd.append('fecha', document.getElementById('fechapredicado').value);
-    fd.append('mapa', document.getElementById('nombremapa').value);
-    fd.append('territorio', document.getElementById('dispositivo').value);
-
-    //if (todopred.checked) {
-    //  fd.append('abarcado', "Completo");
-    //}
-    //if (partepred.checked) {
-    //  fd.append('abarcado', document.getElementById('abarcadopredicado').value);
-    //}
-
+    fd.append('mapa', 'SVN');
+    fd.append('dispositivo', 'celular');
     const enviando = document.getElementById('enviando');
     enviando.textContent = "Enviando información...";
-
     try {
       const res = await fetch(url_script, { method: 'POST', body: fd });
       const text = await res.text();
-
       enviando.textContent = "Información enviada. Muchas gracias....!!!";
-
       setTimeout(() => {
-        //document.getElementById('nombrepredicado').value = "";
-        //document.getElementById('fechapredicado').value = "";
-        //document.getElementById('territoriopredicado').value = "";
-        //document.getElementById('abarcadopredicado').value = "";
-        //enviando.textContent = "";
-        //CerrarModalReporte();
 		alert("Chas gracias...!!!!");
       }, 5000);
-
     } catch (err) {
       enviando.textContent =
         "Hubo un error; por lo que no se pudo enviar la información. Por favor, intentalo nuevamente.-";

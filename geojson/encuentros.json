@@ -59,4 +59,12 @@ var puntosencuentro=[
 		"Lugar": "Tapon Moyano y San Francisco del Monte",
 		"Coordenadas": ("-32.93374695026788, -68.77686048989392"),
 	},
+	{
+		"Lugar": "San Francisco del Monte y 9 de Julio",
+		"Coordenadas": ("-32.93199637193869, -68.78356114264379"),
+	},
+	{
+		"Lugar": "Elpidio Gonzalez y 9 de Julio",
+		"Coordenadas": ("-32.922175970186046, -68.77780692027353"),
+	},
 ];

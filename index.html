@@ -1571,13 +1571,14 @@
   }
 		];
 
+		var Version = "1"; //Cambiar este valor para volver a mostrar el modal de presentacion cada vez que haya una actualizacion importante
 		<!--Mapas o capas bases-->
 		var osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution: 'Teselas <a href="https://www.openstreetmap.org/" target="blanck">OSM</a> &copy',
+			attribution: 'Teselas <a href="https://www.openstreetmap.org/" target="blanck">OSM</a> &copy | Versión: '+Version,
 			minZoom: 1
 		});
 		var googlesatelite=L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-			attribution: 'Teselas <a href="https://www.google.com.ar/maps/@-21.5405995,-63.9542602,11544855m/data=!3m1!1e3?entry=ttu" target="blanck">Google Satelital</a> &copy; <a href="javascript:PrepararMail()"></a>',
+			attribution: 'Teselas <a href="https://www.google.com.ar/maps/@-21.5405995,-63.9542602,11544855m/data=!3m1!1e3?entry=ttu" target="blanck">Google Satelital</a> &copy | Versión: '+Version,
 		});
 		<!--Establecer el área para el mapa y definir cuál será la capa base por defecto-->
 		var mapa = L.map('mapa', {editable:true,
@@ -1655,7 +1656,6 @@
 		var url_script_territorios=driveterritorios;
 		var url_script_novisitar=drivenovisitar;
 		var url_script_contadorvisitas=drivecontadorvisitas;
-		var Version = "1"; //Cambiar este valor para volver a mostrar el modal de presentacion
 		
 		// Crear grupo de puntos
 		var grupomanzanas = L.geoJSON(manzanas, {

@@ -2505,7 +2505,7 @@
 			temporizadormodalflash=setTimeout(() => {
 				document.getElementById("btn-indicaciones-modal-flash").style.visibility='hidden';
 				document.getElementById("MiModalFlash").style.visibility='hidden';
-				if (nomostrarinicial.checked) {localStorage.setItem('MOSTRAR_INICIAL', 1)};
+				if (nomostrarinicial.checked) {localStorage.setItem('MOSTRAR_INICIAL', 1);document.getElementById("borrableinicial").style.visibility="hidden"};
 				//if (mail=="si") {EnviarMail()};
 			}, tiempo);
 		};
@@ -2544,6 +2544,7 @@
 			if (nomostrarinicial.checked) {
 				try {
 					localStorage.setItem('MOSTRAR_INICIAL', 1);
+					document.getElementById("borrableinicial").style.visibility="hidden";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -2566,6 +2567,7 @@
 			if (nomostrarcelular.checked) {
 				try {
 					localStorage.setItem('MOSTRAR_CELULAR', 'no');
+					document.getElementById("borrablecelular").style.visibility="hidden";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -2580,6 +2582,7 @@
 			if (nomostrarinicial.checked) {
 				try {
 					localStorage.setItem('MOSTRAR_INICIAL', 1);
+					document.getElementById("borrableinicial").style.visibility="hidden";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -2595,6 +2598,7 @@
 			if (nomostrarcelular.checked) {
 				try {
 					localStorage.setItem('MOSTRAR_CELULAR', 'no');
+					document.getElementById("borrablecelular").style.visibility="hidden";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);

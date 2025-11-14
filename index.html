@@ -514,7 +514,7 @@
 </header>
 <header>
 	<div id="texto_ayuda" class="contenedoralineado">
-		<p style="font-size:12px; color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/flecha_izquierda.png" width="20" height="20"></img>Para Ayuda, tocá ☰ </p>
+		<p style="font-size:12px; color:blue;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/flecha_izquierda.png" width="20" height="20"></img>Para recibir Ayuda, tocá ☰ </p>
 		<p id="vermiubicacion"><a style="font-size:12px; color:blue;" href="javascript:CentrarMiUbicacion()"><img src="images/posicion.png" width="20" height="20"></img>Ver mi ubicación</a></p>
 	</div>
 </header>
@@ -526,9 +526,9 @@
 				<li><a href="#mapita" role="tab"><i class="fa fa-map-location-dot" style="color: #3f08f2;"></i></a></li>
 				<li><a id="casas_hnos" href="#familias" role="tab"><i class="fa-solid fa-house" style="color: #3f08f2;"></i></a></li>
 				<li><a href="#configuracion" role="tab"><i class="fa-solid fa-screwdriver-wrench" style="color: #3f08f2;"></i></a></li>
-				<!--<li><a href="#calendario" role="tab"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i></a></li>-->
+				<li><a href="#calendario" role="tab"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i></a></li>
 				<li><a href="#informes" role="tab"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i></a></li>
-				<li><a href="#ayuda" role="tab"><i class="fa-solid fa-circle-info" style="color: #3f08f2;"></i></a></li>
+				<!--<li><a href="#ayuda" role="tab"><i class="fa-solid fa-circle-info" style="color: #3f08f2;"></i></a></li>-->
             <!--</ul>
             <ul role="tablist">-->
 				<li><a href="#logueo" role="tab"><i class="fa fa-user" style="color: #3f08f2;"></i></a></li>
@@ -550,9 +550,9 @@
 				<br></br>
 				<p class="lorem"><i class="fa-solid fa-screwdriver-wrench" style="color: #3f08f2;"></i>Te permitirá acceder a las herramientas de configuración disponibles</p>
 				<br></br>
-				<!--<p class="lorem"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i>Consultá las salidas de cada día del mes</p>
-				<br></br>-->
-				<p class="lorem"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i>Consultá las salidas de cada día del mes, Informá lo que se predicó o si encontraste un nuevo NO VISITAR</p>
+				<p class="lorem"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i>Consultá las salidas de cada día del mes</p>
+				<br></br>
+				<p class="lorem"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i>Informá lo que se predicó o si encontraste un nuevo NO VISITAR</p>
 				<br></br>
 				<p class="lorem"><i class="fa-solid fa-circle-info" style="color: #3f08f2;"></i>Te dará detalles sobre cómo usar cada herramienta</p>
 				<br></br>
@@ -604,42 +604,42 @@
 				<p id="restablecernomostrar"><a href="#" onclick="RestablecerNoMostrar(); return false;" style="color:blue;"><i class="fa-solid fa-message" style="color: #3f08f2;"></i>  Volver a mostrar mensajes informativos.</a> (Restablecer los mensajes informativos que puedas haber cancelado).</p>
 				<br></br>
             </div>
-			<!--<div class="sidebar-pane" id="calendario">
+			<div class="sidebar-pane" id="calendario">
                 <h1 class="sidebar-header">Sección de salidas del mes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 				<br></br>
 				<p id="calendariosalidas"><a href="#" onclick="AbrirModalCalendario('modal1'); return false;" style="color:blue;"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i>  Mostrar el calendario.</a> (Consultá las salidas para este mes).</p>
-            </div>-->
+            </div>
 			<div class="sidebar-pane" id="informes">
                 <h1 class="sidebar-header">Sección de informes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 				<br></br>
-				<p id="calendariosalidas"><a href="#" onclick="AbrirModalCalendario('modal1'); return false;" style="color:blue;"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i>  Mostrar el calendario.</a> (Consultá las salidas para este mes).</p>
-				<br></br>
+				<!-- <p id="calendariosalidas"><a href="#" onclick="AbrirModalCalendario('modal1'); return false;" style="color:blue;"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i>  Mostrar el calendario.</a> (Consultá las salidas para este mes).</p> -->
+				<!-- <br></br> -->
 				<p><a href="#" onclick="ReportarPredicado(); return false;" style="color:blue;"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i>  Informar lo que se predicó.</a> (Si dirigiste una salida, por favor, informá lo que se abarcó).</p>
 				<br></br>
 				<p><a href="#" onclick="ReportarNoVisitar(); return false;" style="color:blue;"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i>  Alguien pidió que no lo volvamos a visitar.</a> (Avisá para que se agregue a la lista de los NO VISITAR).</p>
             </div>
-			<div class="sidebar-pane" id="ayuda">
-                <h1 class="sidebar-header">Sección de ayuda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-				<br></br>
-				<p class="lorem"><i class="fa fa-map-location-dot" style="color: #3f08f2;"></i>Te ayudará a encontrar un territorio</p>
-				<br></br>
-				<p>Escribe el número del territorio que deseás ubicar o bien elegilo desde el menú desplegable y te centrará el mapa sobre él, mostrándote su información, tal como nombre de los barrios que abarca y lista de casas "NO VISITAR".</p>
-				<br></br>
-				<div id="ayuda_usuario">
-					<p class="lorem"><i class="fa-solid fa-house" style="color: #3f08f2;"></i>Te ayudará a encontrar la casa de un publicador</br>(En caso que estés registrado como usuario)</p>
-					<br></br>
-					<p>Escribe algún dato que conozcas del publicador o familia que deseás ubicar (nombre y/o apellido) o bien elegilo desde el menú desplegable y te centrará el mapa sobre su casa, mostrándote información, tal como nombres de los integrantes de la familia, privilegios de servicio, dirección postal, teléfono y foto del frente de la casa para que puedan identificarla al llegar.</p>
-				</div>
-				<br></br>
-				<p class="lorem"><i class="fa fa-user" style="color: #3f08f2;"></i>Sección para usuarios registrados</p>
-				<br></br>
-				<br></br>
-				<br></br>
-				<br></br>
-				<br></br>
-				<p class="lorem"><i class="fa-solid fa-circle-exclamation" style="color: #3f08f2;"></i>¿Encontraste algún problema o tenés alguna sugerencia para mejorar este sitio?</p>
-				<p class="lorem">Por favor, comunicate con alguno de los ancianos.-</p>
-            </div>
+			<!-- <div class="sidebar-pane" id="ayuda"> -->
+                <!-- <h1 class="sidebar-header">Sección de ayuda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1> -->
+				<!-- <br></br> -->
+				<!-- <p class="lorem"><i class="fa fa-map-location-dot" style="color: #3f08f2;"></i>Te ayudará a encontrar un territorio</p> -->
+				<!-- <br></br> -->
+				<!-- <p>Escribe el número del territorio que deseás ubicar o bien elegilo desde el menú desplegable y te centrará el mapa sobre él, mostrándote su información, tal como nombre de los barrios que abarca y lista de casas "NO VISITAR".</p> -->
+				<!-- <br></br> -->
+				<!-- <div id="ayuda_usuario"> -->
+					<!-- <p class="lorem"><i class="fa-solid fa-house" style="color: #3f08f2;"></i>Te ayudará a encontrar la casa de un publicador</br>(En caso que estés registrado como usuario)</p> -->
+					<!-- <br></br> -->
+					<!-- <p>Escribe algún dato que conozcas del publicador o familia que deseás ubicar (nombre y/o apellido) o bien elegilo desde el menú desplegable y te centrará el mapa sobre su casa, mostrándote información, tal como nombres de los integrantes de la familia, privilegios de servicio, dirección postal, teléfono y foto del frente de la casa para que puedan identificarla al llegar.</p> -->
+				<!-- </div> -->
+				<!-- <br></br> -->
+				<!-- <p class="lorem"><i class="fa fa-user" style="color: #3f08f2;"></i>Sección para usuarios registrados</p> -->
+				<!-- <br></br> -->
+				<!-- <br></br> -->
+				<!-- <br></br> -->
+				<!-- <br></br> -->
+				<!-- <br></br> -->
+				<!-- <p class="lorem"><i class="fa-solid fa-circle-exclamation" style="color: #3f08f2;"></i>¿Encontraste algún problema o tenés alguna sugerencia para mejorar este sitio?</p> -->
+				<!-- <p class="lorem">Por favor, comunicate con alguno de los ancianos.-</p> -->
+            <!-- </div> -->
 			<div class="sidebar-pane" id="logueo">
                 <div id="log_no">
 					<h1 class="sidebar-header">Sección de logueo<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -671,22 +671,6 @@
 		<button class="flechaizquierdaroja" id="flecharoja">
 			<img src="./images/flecha_izquierda_roja.png"><img src="./images/flecha_izquierda_roja.png">
 		</button>
-		<!--Botón para el Calendario-->
-		<!--<div class="controles">
-			<button  class="boton-calendario" id="botonsalidas" onclick="AbrirModalCalendario('modal1')">Salidas del mes...</button>
-		</div>-->
-		<!--Botón para informar los territorios predicados-->
-		<!--<div class="controles">
-			<button id="botonreportarpredicado" class="boton-predicado" onclick="ReportarPredicado()">¿Dirigiste una salida? Por favor, informá qué se predicó</button>
-		</div>-->
-		<!--Botón para informar NO VISITAR nuevos-->
-		<!--<div class="controles">
-			<button id="botonreportarnovisitar" class="boton-novisitar" onclick="ReportarNoVisitar()">Una persona pidió que no la visitemos más...</button>
-		</div>-->
-		<!--Botón para recargar la página-->
-		<!--<div class="controles">
-			<button id="botonrecargar" class="boton-recargar" onclick="location.reload()">Volver a empezar...</button>
-		</div>-->
 	</div>
 	
 	<div class="modalflash" id="MiModalFlash" style="font-size:14px;">
@@ -1710,7 +1694,7 @@
 			if (usuario==usuarios && contrasena==contrasenias) {
 				barralateral.close();
 				document.getElementById("casas_hnos").style.display='inline';
-				document.getElementById("ayuda_usuario").style.display='inline';
+				//document.getElementById("ayuda_usuario").style.display='inline';
 				document.getElementById("log_si").style.display='inline';
 				document.getElementById("log_no").style.display='none';}
 			else {
@@ -1726,7 +1710,7 @@
 			if (ruta) {ruta.remove()};
 			if (capa_casas) {mapa.removeLayer(capa_casas)};
 			document.getElementById("casas_hnos").style.display='none';
-			document.getElementById("ayuda_usuario").style.display='none';
+			//document.getElementById("ayuda_usuario").style.display='none';
 			document.getElementById("log_si").style.display='none';
 			document.getElementById("log_no").style.display='inline';
 			document.getElementById("username").value="";
@@ -1738,13 +1722,13 @@
 		function VerificarVersion() {
 			if (version=="publica") {
 				document.getElementById("casas_hnos").style.display='none';
-				document.getElementById("ayuda_usuario").style.display='none';
+				//document.getElementById("ayuda_usuario").style.display='none';
 				document.getElementById("log_si").style.display='none';
 				document.getElementById("log_no").style.display='inline';
 			};
 			if (version=="completa") {
 				document.getElementById("casas_hnos").style.display='inline';
-				document.getElementById("ayuda_usuario").style.display='inline';
+				//document.getElementById("ayuda_usuario").style.display='inline';
 				document.getElementById("log_si").style.display='inline';
 				document.getElementById("log_no").style.display='none';
 			};
@@ -2111,8 +2095,10 @@
 				so = "Linux";
 			};
 			sistema_operativo=so;
-			if (so=="Windows" || so=="Linux") {document.getElementById("botonnorte").style.visibility="visible"};
+			if (sistema_operativo=="Windows" || sistema_operativo=="Linux") {document.getElementById("botonnorte").style.visibility="visible"};
+			if (sistema_operativo=="Android" || sistema_operativo=="Windows Phone" || sistema_operativo=="iOS (iPad o iPhone)") {mapa.style.width = "100%";mapa.style.height = "80%";};
 		};
+		VerificarSistemaOperativo();
 		
 		<!--Funcion para verificar estado de conectividad-->
 		function VerificarConexion() {
@@ -2513,7 +2499,7 @@
 		};
 		
 		document.getElementById("casas_hnos").style.display='none';
-		document.getElementById("ayuda_usuario").style.display='none';
+		//document.getElementById("ayuda_usuario").style.display='none';
 		document.getElementById("log_si").style.display='none';
 		document.getElementById("ocultarflias").style.display="none";
 		//document.getElementById("localizacion").style.display='none';
@@ -3170,8 +3156,8 @@
 		const elementonovedoso = document.getElementById('barralateral');
 		const novedaden="barralateral";//Cambiar si fuera otro elemento el que contenga la novedad
 		// Fechas de inicio y fin para resaltar o remarcar una novedad (pueden incluir hora si querés)
-		const inicio = new Date("2025-11-01"); //yyyy-mm-dd
-		const fin = new Date("2025-11-12"); //yyyy-mm-dd
+		const inicio = new Date("2025-11-10"); //yyyy-mm-dd
+		const fin = new Date("2025-12-05"); //yyyy-mm-dd
 		const hoy = new Date();
 		const cartelnuevo = document.getElementById('cartelnuevo');
 		if (hoy >= inicio && hoy <= fin && Version !==localStorage.getItem('MOSTRAR_NUEVO')) {
@@ -3284,7 +3270,7 @@
 			if (Version !== localStorage.getItem('MOSTRAR_INICIAL')) {ModalFlash(tiempomodalflash);document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrableinicial").style.visibility="hidden";document.getElementById("borrablelonuevo").style.visibility="hidden";document.getElementById("restablecernomostrar").style.visibility="visible"};
 			if (localStorage.getItem('MOSTRAR_CELULAR') !=="no" && sistema_operativo !=="Windows" && sistema_operativo !=="Linux") {modalinicial.showModal();document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrablecelular").style.visibility="hidden";document.getElementById("restablecernomostrar").style.visibility="visible"};
 			if (Version !==localStorage.getItem('MOSTRAR_NUEVO')) {document.getElementById("flecharoja").style.visibility='visible'} else {document.getElementById("flecharoja").style.visibility='hidden'};
-			if (so=="Windows Phone" || so=="Android" || so=="iOS (iPad o iPhone)") {document.getElementById("flecharoja").style.visibility='hidden'};
+			if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {document.getElementById("flecharoja").style.visibility='hidden'};
 		};
 		
 		//Activar/Desactivar/Mostrar/Ocultar/Ejecutar lo que corresponda al iniciar
@@ -3306,7 +3292,6 @@
 		document.getElementById("MiModalFlash").style.visibility='hidden';
 		VerificarConexion();
 		VerificarVersion();
-		VerificarSistemaOperativo();
 		VerificarNoVolverAMostrar();
 		if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {dispositivo="movil"}
 		else if (sistema_operativo=="Windows" || sistema_operativo=="MacOS" || sistema_operativo=="Linux") {dispositivo="pc"}

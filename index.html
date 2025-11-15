@@ -3267,6 +3267,7 @@
 		
 		//Función No Volver a mostrar sugerencia para girar el celular
 		function VerificarNoVolverAMostrar(){
+			alert(sistema_operativo);
 			if (Version !== localStorage.getItem('MOSTRAR_INICIAL')) {ModalFlash(tiempomodalflash);document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrableinicial").style.visibility="hidden";document.getElementById("borrablelonuevo").style.visibility="hidden";document.getElementById("restablecernomostrar").style.visibility="visible"};
 			if (localStorage.getItem('MOSTRAR_CELULAR') !=="no" && sistema_operativo !=="Windows" && sistema_operativo !=="Linux") {modalinicial.showModal();document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrablecelular").style.visibility="hidden";document.getElementById("restablecernomostrar").style.visibility="visible"};
 			if (Version !==localStorage.getItem('MOSTRAR_NUEVO')) {document.getElementById("flecharoja").style.visibility='visible'} else {document.getElementById("flecharoja").style.visibility='hidden'};

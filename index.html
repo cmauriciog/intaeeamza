@@ -2571,7 +2571,7 @@
 			if (nomostrarcelular.checked) {
 				try {
 					localStorage.setItem('MOSTRAR_CELULAR', 'no');
-					document.getElementById("borrablecelular").style.visibility="hidden";
+					document.getElementById("borrablecelular").style.display="none";//visibility="hidden";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -2602,7 +2602,7 @@
 			if (nomostrarcelular.checked) {
 				try {
 					localStorage.setItem('MOSTRAR_CELULAR', 'no');
-					document.getElementById("borrablecelular").style.visibility="hidden";
+					document.getElementById("borrablecelular").style.display="none";//visibility="hidden";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -3284,7 +3284,7 @@
 		//Función No Volver a mostrar sugerencia para girar el celular
 		function VerificarNoVolverAMostrar(){
 			if (Version !== localStorage.getItem('MOSTRAR_INICIAL')) {ModalFlash(tiempomodalflash);document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrableinicial").style.visibility="hidden";document.getElementById("borrablelonuevo").style.visibility="hidden";document.getElementById("restablecernomostrar").style.visibility="visible"};
-			if (localStorage.getItem('MOSTRAR_CELULAR') !=="no" && sistema_operativo !=="Windows" && sistema_operativo !=="Linux") {modalinicial.showModal();document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrablecelular").style.visibility="hidden";document.getElementById("restablecernomostrar").style.visibility="visible"};
+			if (localStorage.getItem('MOSTRAR_CELULAR') !=="no" && sistema_operativo !=="Windows" && sistema_operativo !=="Linux") {modalinicial.showModal();document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrablecelular").style.display="none";document.getElementById("restablecernomostrar").style.visibility="visible"};
 			if (Version !==localStorage.getItem('MOSTRAR_NUEVO')) {document.getElementById("flecharoja").style.visibility='visible'} else {document.getElementById("flecharoja").style.visibility='hidden'};
 			if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {document.getElementById("flecharoja").style.visibility='hidden'};
 		};

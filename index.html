@@ -527,11 +527,8 @@
 				<li><a href="#mapita" role="tab"><i class="fa fa-map-location-dot" style="color: #3f08f2;"></i></a></li>
 				<li><a id="casas_hnos" href="#familias" role="tab"><i class="fa-solid fa-house" style="color: #3f08f2;"></i></a></li>
 				<li><a href="#configuracion" role="tab"><i class="fa-solid fa-screwdriver-wrench" style="color: #3f08f2;"></i></a></li>
-				<!--<li><a href="#calendario" role="tab"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i></a></li>-->
 				<li><a href="#informes" role="tab"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i></a></li>
 				<li><a href="#ayuda" role="tab"><i class="fa-solid fa-circle-info" style="color: #3f08f2;"></i></a></li>
-            <!--</ul>
-            <ul role="tablist">-->
 				<li><a href="#logueo" role="tab"><i class="fa fa-user" style="color: #3f08f2;"></i></a></li>
             </ul>
         </div>
@@ -551,8 +548,6 @@
 				<br></br>
 				<p class="lorem"><i class="fa-solid fa-screwdriver-wrench" style="color: #3f08f2;"></i>Te permitirá acceder a las herramientas de configuración disponibles</p>
 				<br></br>
-				<!--<p class="lorem"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i>Consultá las salidas de cada día del mes</p>
-				<br></br>-->
 				<p class="lorem"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i>Consultá las salidas de cada día del mes, Informá lo que se predicó o si encontraste un nuevo NO VISITAR</p>
 				<br></br>
 				<p class="lorem"><i class="fa-solid fa-circle-info" style="color: #3f08f2;"></i>Te dará detalles sobre cómo usar cada herramienta</p>
@@ -605,11 +600,6 @@
 				<p id="restablecernomostrar"><a href="#" onclick="RestablecerNoMostrar(); return false;" style="color:blue;"><i class="fa-solid fa-message" style="color: #3f08f2;"></i>  Volver a mostrar mensajes informativos.</a> (Restablecer los mensajes informativos que puedas haber cancelado).</p>
 				<br></br>
             </div>
-			<!--<div class="sidebar-pane" id="calendario">
-                <h1 class="sidebar-header">Sección de salidas del mes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-				<br></br>
-				<p id="calendariosalidas"><a href="#" onclick="AbrirModalCalendario('modal1'); return false;" style="color:blue;"><i class="fa-solid fa-calendar-days" style="color: #3f08f2;"></i>  Mostrar el calendario.</a> (Consultá las salidas para este mes).</p>
-            </div>-->
 			<div class="sidebar-pane" id="informes">
                 <h1 class="sidebar-header">Sección de informes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 				<br></br>
@@ -672,22 +662,6 @@
 		<button class="flechaizquierdaroja" id="flecharoja">
 			<img src="./images/flecha_izquierda_roja.png"><img src="./images/flecha_izquierda_roja.png">
 		</button>
-		<!--Botón para el Calendario-->
-		<!--<div class="controles">
-			<button  class="boton-calendario" id="botonsalidas" onclick="AbrirModalCalendario('modal1')">Salidas del mes...</button>
-		</div>-->
-		<!--Botón para informar los territorios predicados-->
-		<!--<div class="controles">
-			<button id="botonreportarpredicado" class="boton-predicado" onclick="ReportarPredicado()">¿Dirigiste una salida? Por favor, informá qué se predicó</button>
-		</div>-->
-		<!--Botón para informar NO VISITAR nuevos-->
-		<!--<div class="controles">
-			<button id="botonreportarnovisitar" class="boton-novisitar" onclick="ReportarNoVisitar()">Una persona pidió que no la visitemos más...</button>
-		</div>-->
-		<!--Botón para recargar la página-->
-		<!--<div class="controles">
-			<button id="botonrecargar" class="boton-recargar" onclick="location.reload()">Volver a empezar...</button>
-		</div>-->
 	</div>
 	
 	<div class="modalflash" id="MiModalFlash" style="font-size:14px;">
@@ -3335,5 +3309,6 @@
 				//enviando.textContent = 'Hubo un error; por lo que no se pudo enviar la información. Por favor, intentalo nuevamente.-';
 			}
 		});
+		if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {mapa.style.height = "80%"};
 	</script>
 </html>

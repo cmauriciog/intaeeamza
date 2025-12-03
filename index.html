@@ -617,10 +617,16 @@
 				<p>Escribe el número del territorio que deseás ubicar o bien elegilo desde el menú desplegable y te centrará el mapa sobre él, mostrándote su información, tal como nombre de los barrios que abarca y lista de casas "NO VISITAR".</p>
 				<br></br>
 				<div id="ayuda_usuario">
-					<p class="lorem"><i class="fa-solid fa-house" style="color: #3f08f2;"></i>Te ayudará a encontrar la casa de un publicador</br>(En caso que estés registrado como usuario)</p>
+					<p class="lorem"><i class="fa-solid fa-house" style="color: #3f08f2;"></i>Te ayudará a encontrar la casa de un publicador</br>(En caso que estés registrado como usuario o seas el viajante)</p>
 					<br></br>
 					<p>Escribe algún dato que conozcas del publicador o familia que deseás ubicar (nombre y/o apellido) o bien elegilo desde el menú desplegable y te centrará el mapa sobre su casa, mostrándote información, tal como nombres de los integrantes de la familia, privilegios de servicio, dirección postal, teléfono y foto del frente de la casa para que puedan identificarla al llegar.</p>
+					<br></br>
 				</div>
+				<p class="lorem"><i class="fa-solid fa-screwdriver-wrench" style="color: #3f08f2;"></i>Te permitirá acceder a las herramientas de configuración disponibles</p>
+				<br></br>
+				<p>Podrás cambiar el mapa de fondo, alternando entre el de sólo calles y el satelital (con casas). Recargar la aplicación (ideal para volver a empezar). También podrás pedir que se vuelvan a mostrar los mensajes informativos si que los cancelaste anteriormente.</p>
+				<br></br>
+				<p class="lorem"><i class="fa-solid fa-pen-to-square" style="color: #3f08f2;"></i>Consultá las salidas de cada día del mes, Informá lo que se predicó o si encontraste un nuevo NO VISITAR</p>
 				<br></br>
 				<p class="lorem"><i class="fa fa-user" style="color: #3f08f2;"></i>Sección para usuarios registrados</p>
 				<br></br>
@@ -652,7 +658,7 @@
     </div>
 	
 	<div id="mapa" style="width:100%;height:90%;">
-		<div id="distancia">Buscando ubicacion...</div>
+		<div id="distancia" style="transition: opacity 1s;">Buscando ubicacion...</div>
 		<button class="botoncentrado" id="botoncentrado" onclick="CentrarMiUbicacion()" title="Centrar en mi ubicación real">
 			<img src="./images/posicion.png" alt="Centrar en Mi Ubicación">
 		</button>
@@ -672,6 +678,7 @@
 			<br>Es decir, si vos se lo autorizás, te trazará una ruta con las indicaciones necesarias para llegar...!!!. Te incluirá una distancia y demora estimadas y hasta te avisará con voz cuando estés cerca y cuando hayás llegado...!!!
 			<br>
 			<br>Podrás consultar las salidas del mes en curso y si dirigiste alguna salida, podrás enviarle los detalles de lo que se abarcó al hermano encargado de los territorios.
+			<br>Además, si alguien pidió que no lo visitemos más, podrás avisar para que se registre.
 			<br>
 			<br><br><strong>Por otra parte, si sos el viajante, además podrás:</strong>
 			<br>Localizar las casas y los puntos donde puedas tener tus arreglos para almuerzos, pastoreos y actividad.
@@ -682,7 +689,7 @@
 					<input id="nomostrarinicial" type="checkbox" style="width:16px; height:16px;"/>
 					No volver a mostrar
 				</label>
-				<button id="btn-indicaciones-modal-flash" style="height:30px; width:90px; background-color:blue;border-color:white;color:white;" onclick="TrazarRuta()">Sí, por favor</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+				<button id="btn-indicaciones-modal-flash" style="height:30px; width:90px; background-color:blue;border-color:white;color:white;" onclick="TrazarRuta()">Sí</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
 				<button id="btn-cerrar-modal-flash" style="height:30px; width:90px; background-color:red;border-color:white;color:white;">Cerrar</button>
 			</div>
 			<span style="font-weight: bold; color:red; text-align: center;">Me cierro en: <span id="contador"> </span> segundos</span>
@@ -806,62 +813,41 @@
 	
 		<!--Programa de salidas en formato JSON-->
 		var salidas=[
-			{
+  {
     "DiaSemana": "Lunes",
-    "Dia": 3,
-    "Mes": 11,
+    "Dia": 1,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
     "SalidaM": "",
     "ConductorM": "",
     "TerritorioM": "",
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Zoom",
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Curupaiti y Castro",
     "SalidaT": "Congregacional",
-    "ConductorT": "Emanuel Gualpa",
-    "TerritorioT": "",
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
+    "ConductorT": "Alejandro Videla",
+    "TerritorioT": 37,
+    "HoraN": "20:00",
+    "PuntoEncuentroN": "Zoom",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Emanuel Gualpa",
     "TerritorioN": ""
   },
   {
     "DiaSemana": "Martes",
-    "Dia": 4,
-    "Mes": 11,
+    "Dia": 2,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Curupaiti y Castro",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Elpidio Gonzalez",
     "SalidaM": "Congregacional",
     "ConductorM": "Jose Ortiz",
-    "TerritorioM": 29,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Curupaiti y Elpidio Gonzalez",
-    "SalidaT": "Congregacional",
-    "ConductorT": "Carlos Caba�ez",
-    "TerritorioT": 25,
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
-    "TerritorioN": ""
-  },
-  {
-    "DiaSemana": "Miercoles",
-    "Dia": 5,
-    "Mes": 11,
-    "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Gutierrez",
-    "SalidaM": "Congregacional",
-    "ConductorM": "Hector Ortiz",
-    "TerritorioM": 19,
-    "HoraT": "18:00",
+    "TerritorioM": 25,
+    "HoraT": "18:30",
     "PuntoEncuentroT": "Reyes",
     "SalidaT": "Congregacional",
-    "ConductorT": "Roberto Garcia",
+    "ConductorT": "Carlos Caba�ez",
     "TerritorioT": 15,
     "HoraN": "",
     "PuntoEncuentroN": "",
@@ -870,11 +856,32 @@
     "TerritorioN": ""
   },
   {
-    "DiaSemana": "Jueves",
-    "Dia": 6,
-    "Mes": 11,
+    "DiaSemana": "Miercoles",
+    "Dia": 3,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Everest y 9 de Julio",
+    "SalidaM": "Congregacional",
+    "ConductorM": "Hector Ortiz",
+    "TerritorioM": 19,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Curupaiti y Castro",
+    "SalidaT": "Congregacional",
+    "ConductorT": "Matias Biscontin",
+    "TerritorioT": 28,
+    "HoraN": "19:30",
+    "PuntoEncuentroN": "Curupaiti y Castro",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Matias Biscontin",
+    "TerritorioN": 27
+  },
+  {
+    "DiaSemana": "Jueves",
+    "Dia": 4,
+    "Mes": 12,
+    "Anio": 2025,
+    "HoraM": "09:00",
     "PuntoEncuentroM": "Zoom",
     "SalidaM": "Congregacional",
     "ConductorM": "Joaquin Rossi",
@@ -892,40 +899,40 @@
   },
   {
     "DiaSemana": "Viernes",
-    "Dia": 7,
-    "Mes": 11,
+    "Dia": 5,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Jose Ortiz",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Elpidio Gonzalez",
     "SalidaM": "Congregacional",
-    "ConductorM": "Oscar Galdames",
+    "ConductorM": "Hector Ortiz",
     "TerritorioM": 23,
-    "HoraT": "18:00",
+    "HoraT": "18:30",
     "PuntoEncuentroT": "Centro de Salud",
     "SalidaT": "Congregacional",
-    "ConductorT": "Jose Quiroga",
+    "ConductorT": "Alejandro Videla",
     "TerritorioT": 14,
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
+    "HoraN": "20:00",
+    "PuntoEncuentroN": "Zoom",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Emanuel Gualpa",
     "TerritorioN": ""
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 8,
-    "Mes": 11,
+    "Dia": 6,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
-    "PuntoEncuentroM": "Jose Quiroga",
+    "PuntoEncuentroM": "Pedro Goyena y 9 de Julio",
     "SalidaM": "Grupo 1",
-    "ConductorM": "Roque Castillo",
-    "TerritorioM": 5,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Tapon Moyano y Boulevard",
+    "ConductorM": "Jose Quiroga",
+    "TerritorioM": 16,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Pedro Goyena y Curupaiti",
     "SalidaT": "Congregacional",
-    "ConductorT": "Carlos Caba�ez",
-    "TerritorioT": 4,
+    "ConductorT": "Cristian Bringas",
+    "TerritorioT": 18,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -934,13 +941,13 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 8,
-    "Mes": 11,
+    "Dia": 6,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
     "PuntoEncuentroM": "Hector Ortiz",
     "SalidaM": "Grupo 2",
-    "ConductorM": "Mauricio Godoy",
+    "ConductorM": "Carlos Caba�ez",
     "TerritorioM": 8,
     "HoraT": "",
     "PuntoEncuentroT": "",
@@ -955,14 +962,14 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 8,
-    "Mes": 11,
+    "Dia": 6,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
     "PuntoEncuentroM": "Candia",
     "SalidaM": "Grupo 3",
-    "ConductorM": "Jines Candia",
-    "TerritorioM": 9,
+    "ConductorM": "William Calderon",
+    "TerritorioM": 10,
     "HoraT": "",
     "PuntoEncuentroT": "",
     "SalidaT": "",
@@ -976,14 +983,14 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 8,
-    "Mes": 11,
+    "Dia": 6,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
-    "PuntoEncuentroM": "Galdames",
+    "PuntoEncuentroM": "Tapon Moyano y Rio Deseado",
     "SalidaM": "Grupo 4",
-    "ConductorM": "Oscar Galdames",
-    "TerritorioM": 16,
+    "ConductorM": "Daniel del Balzo",
+    "TerritorioM": 3,
     "HoraT": "",
     "PuntoEncuentroT": "",
     "SalidaT": "",
@@ -997,8 +1004,8 @@
   },
   {
     "DiaSemana": "Domingo",
-    "Dia": 9,
-    "Mes": 11,
+    "Dia": 7,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
@@ -1018,18 +1025,18 @@
   },
   {
     "DiaSemana": "Lunes",
-    "Dia": 10,
-    "Mes": 11,
+    "Dia": 8,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "",
-    "PuntoEncuentroM": "",
-    "SalidaM": "",
-    "ConductorM": "",
-    "TerritorioM": "",
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Zoom",
-    "SalidaT": "Congregacional",
-    "ConductorT": "Natalia Calderon",
+    "HoraM": "10:00",
+    "PuntoEncuentroM": "Galdames",
+    "SalidaM": "Congregacional",
+    "ConductorM": "Mauricio Godoy",
+    "TerritorioM": 10,
+    "HoraT": "",
+    "PuntoEncuentroT": "",
+    "SalidaT": "",
+    "ConductorT": "",
     "TerritorioT": "",
     "HoraN": "",
     "PuntoEncuentroN": "",
@@ -1039,19 +1046,19 @@
   },
   {
     "DiaSemana": "Martes",
-    "Dia": 11,
-    "Mes": 11,
+    "Dia": 9,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
+    "HoraM": "09:00",
     "PuntoEncuentroM": "Curupaiti y Elpidio Gonzalez",
     "SalidaM": "Congregacional",
     "ConductorM": "Hector Ortiz",
-    "TerritorioM": 25,
-    "HoraT": "18:00",
+    "TerritorioM": 26,
+    "HoraT": "18:30",
     "PuntoEncuentroT": "Curupaiti y Castro",
     "SalidaT": "Congregacional",
-    "ConductorT": "Alejandro Videla",
-    "TerritorioT": 31,
+    "ConductorT": "Carlos Caba�ez",
+    "TerritorioT": 29,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -1060,31 +1067,31 @@
   },
   {
     "DiaSemana": "Miercoles",
-    "Dia": 12,
-    "Mes": 11,
+    "Dia": 10,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Curupaiti y Elpidio Gonzalez",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Castro",
     "SalidaM": "Congregacional",
     "ConductorM": "Jose Ortiz",
-    "TerritorioM": 26,
-    "HoraT": "18:00",
+    "TerritorioM": 38,
+    "HoraT": "18:30",
     "PuntoEncuentroT": "Curupaiti y Castro",
     "SalidaT": "Congregacional",
-    "ConductorT": "Jose Quiroga",
+    "ConductorT": "Roberto Garcia",
     "TerritorioT": 34,
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
-    "TerritorioN": ""
+    "HoraN": "19:30",
+    "PuntoEncuentroN": "Curupaiti y Castro",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Roberto Garcia",
+    "TerritorioN": 35
   },
   {
     "DiaSemana": "Jueves",
-    "Dia": 13,
-    "Mes": 11,
+    "Dia": 11,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
+    "HoraM": "09:00",
     "PuntoEncuentroM": "Zoom",
     "SalidaM": "Congregacional",
     "ConductorM": "Emanuel Gualpa",
@@ -1102,40 +1109,40 @@
   },
   {
     "DiaSemana": "Viernes",
-    "Dia": 14,
-    "Mes": 11,
+    "Dia": 12,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
+    "HoraM": "09:00",
     "PuntoEncuentroM": "Curupaiti y Castro",
     "SalidaM": "Congregacional",
     "ConductorM": "Oscar Galdames",
     "TerritorioM": 33,
-    "HoraT": "18:00",
+    "HoraT": "18:30",
     "PuntoEncuentroT": "Curupaiti y Castro",
     "SalidaT": "Congregacional",
-    "ConductorT": "Cristian Bringas",
+    "ConductorT": "Jonatan Astudillo",
     "TerritorioT": 32,
     "HoraN": "20:00",
     "PuntoEncuentroN": "Zoom",
     "SalidaN": "Congregacional",
-    "ConductorN": "Emanuel Gualpa",
+    "ConductorN": "Noelia Garcia",
     "TerritorioN": ""
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 15,
-    "Mes": 11,
+    "Dia": 13,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
-    "PuntoEncuentroM": "Tapon Moyano y San Francisco del Monte",
+    "PuntoEncuentroM": "San Francisco del Monte y 9 de Julio",
     "SalidaM": "Congregacional",
     "ConductorM": "Roque Castillo",
-    "TerritorioM": 1,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Curupaiti y Elpidio Gonzalez",
+    "TerritorioM": 21,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Pedro Goyena y 9 de Julio",
     "SalidaT": "Grupos 1 y 2",
-    "ConductorT": "Facundo Manresa",
-    "TerritorioT": 13,
+    "ConductorT": "Jose Quiroga",
+    "TerritorioT": 9,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -1144,19 +1151,19 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 15,
-    "Mes": 11,
+    "Dia": 13,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
     "SalidaM": "",
     "ConductorM": "",
     "TerritorioM": "",
-    "HoraT": "18:00",
+    "HoraT": "18:30",
     "PuntoEncuentroT": "Pedro Goyena y 9 de Julio",
     "SalidaT": "Grupos 3 y 4",
     "ConductorT": "Ruben Biscontin",
-    "TerritorioT": 17,
+    "TerritorioT": 11,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -1165,8 +1172,8 @@
   },
   {
     "DiaSemana": "Domingo",
-    "Dia": 16,
-    "Mes": 11,
+    "Dia": 14,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
@@ -1186,40 +1193,40 @@
   },
   {
     "DiaSemana": "Lunes",
-    "Dia": 17,
-    "Mes": 11,
+    "Dia": 15,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
     "SalidaM": "",
     "ConductorM": "",
     "TerritorioM": "",
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Zoom",
-    "SalidaT": "Grupo 2",
-    "ConductorT": "Emanuel Gualpa",
+    "HoraT": "",
+    "PuntoEncuentroT": "",
+    "SalidaT": "",
+    "ConductorT": "",
     "TerritorioT": "",
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
+    "HoraN": "20:00",
+    "PuntoEncuentroN": "Zoom",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Emanuel Gualpa",
     "TerritorioN": ""
   },
   {
     "DiaSemana": "Martes",
-    "Dia": 18,
-    "Mes": 11,
+    "Dia": 16,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Tapon Moyano y San Francisco del Monte",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Elpidio Gonzalez",
     "SalidaM": "Congregacional",
     "ConductorM": "Jose Ortiz",
-    "TerritorioM": 6,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Elpidio Gonzalez y 9 de Julio",
+    "TerritorioM": 13,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Curupaiti y Castro",
     "SalidaT": "Congregacional",
-    "ConductorT": "Roberto Garcia",
-    "TerritorioT": 11,
+    "ConductorT": "Carlos Caba�ez",
+    "TerritorioT": 30,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -1228,31 +1235,31 @@
   },
   {
     "DiaSemana": "Miercoles",
-    "Dia": 19,
-    "Mes": 11,
+    "Dia": 17,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
+    "HoraM": "09:00",
     "PuntoEncuentroM": "Gutierrez",
     "SalidaM": "Congregacional",
     "ConductorM": "Hector Ortiz",
     "TerritorioM": 20,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Pedro Goyena y 9 de Julio",
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Tapon Moyano y San Francisco del Monte",
     "SalidaT": "Congregacional",
-    "ConductorT": "Carlos Caba�ez",
-    "TerritorioT": 19,
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
-    "TerritorioN": ""
+    "ConductorT": "Ruben Biscontin",
+    "TerritorioT": 6,
+    "HoraN": "19:30",
+    "PuntoEncuentroN": "Pedro Goyena y Tapon Moyano",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Ruben Biscontin",
+    "TerritorioN": 5
   },
   {
     "DiaSemana": "Jueves",
-    "Dia": 20,
-    "Mes": 11,
+    "Dia": 18,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
+    "HoraM": "09:00",
     "PuntoEncuentroM": "Zoom",
     "SalidaM": "Congregacional",
     "ConductorM": "Joaquin Rossi",
@@ -1270,19 +1277,19 @@
   },
   {
     "DiaSemana": "Viernes",
-    "Dia": 21,
-    "Mes": 11,
+    "Dia": 19,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Pedro Goyena y 9 de Julio",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Castro",
     "SalidaM": "Congregacional",
     "ConductorM": "Oscar Galdames",
-    "TerritorioM": 12,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Elpidio Gonzalez y 9 de Julio",
+    "TerritorioM": 37,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Pedro Goyena y 9 de Julio",
     "SalidaT": "Congregacional",
-    "ConductorT": "Jose Quiroga",
-    "TerritorioT": 2,
+    "ConductorT": "Cristian Bringas",
+    "TerritorioT": 16,
     "HoraN": "20:00",
     "PuntoEncuentroN": "Zoom",
     "SalidaN": "Congregacional",
@@ -1291,19 +1298,19 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 22,
-    "Mes": 11,
+    "Dia": 20,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
-    "PuntoEncuentroM": "Tapon Moyano y Boulevard",
+    "PuntoEncuentroM": "Pedro Goyena y Tapon Moyano",
     "SalidaM": "Grupo 1",
-    "ConductorM": "Roque Castillo",
-    "TerritorioM": 3,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Jose Quiroga",
+    "ConductorM": "Alejandro Nu�ez",
+    "TerritorioM": 5,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Pedro Goyena y 9 de Julio",
     "SalidaT": "Congregacional",
-    "ConductorT": "Jose Quiroga",
-    "TerritorioT": 5,
+    "ConductorT": "Carlos Caba�ez",
+    "TerritorioT": 27,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -1312,55 +1319,13 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 22,
-    "Mes": 11,
+    "Dia": 20,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
-    "PuntoEncuentroM": "Hector Ortiz",
+    "PuntoEncuentroM": "Tapon Moyano y Rio Deseado",
     "SalidaM": "Grupo 2",
     "ConductorM": "Mauricio Godoy",
-    "TerritorioM": 10,
-    "HoraT": "",
-    "PuntoEncuentroT": "",
-    "SalidaT": "",
-    "ConductorT": "",
-    "TerritorioT": "",
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
-    "TerritorioN": ""
-  },
-  {
-    "DiaSemana": "Sabado",
-    "Dia": 22,
-    "Mes": 11,
-    "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Candia",
-    "SalidaM": "Grupo 3",
-    "ConductorM": "Jonatan Astudillo",
-    "TerritorioM": 17,
-    "HoraT": "",
-    "PuntoEncuentroT": "",
-    "SalidaT": "",
-    "ConductorT": "",
-    "TerritorioT": "",
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
-    "TerritorioN": ""
-  },
-  {
-    "DiaSemana": "Sabado",
-    "Dia": 22,
-    "Mes": 11,
-    "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Tapon Moyano y Boulevard",
-    "SalidaM": "Grupo 4",
-    "ConductorM": "Gustavo Miron",
     "TerritorioM": 4,
     "HoraT": "",
     "PuntoEncuentroT": "",
@@ -1374,9 +1339,51 @@
     "TerritorioN": ""
   },
   {
+    "DiaSemana": "Sabado",
+    "Dia": 20,
+    "Mes": 12,
+    "Anio": 2025,
+    "HoraM": "09:30",
+    "PuntoEncuentroM": "Candia",
+    "SalidaM": "Grupo 3",
+    "ConductorM": "Jines Candia",
+    "TerritorioM": 8,
+    "HoraT": "",
+    "PuntoEncuentroT": "",
+    "SalidaT": "",
+    "ConductorT": "",
+    "TerritorioT": "",
+    "HoraN": "",
+    "PuntoEncuentroN": "",
+    "SalidaN": "",
+    "ConductorN": "",
+    "TerritorioN": ""
+  },
+  {
+    "DiaSemana": "Sabado",
+    "Dia": 20,
+    "Mes": 12,
+    "Anio": 2025,
+    "HoraM": "09:30",
+    "PuntoEncuentroM": "Galdames",
+    "SalidaM": "Grupo 4",
+    "ConductorM": "Oscar Galdames",
+    "TerritorioM": 9,
+    "HoraT": "",
+    "PuntoEncuentroT": "",
+    "SalidaT": "",
+    "ConductorT": "",
+    "TerritorioT": "",
+    "HoraN": "",
+    "PuntoEncuentroN": "",
+    "SalidaN": "",
+    "ConductorN": "",
+    "TerritorioN": ""
+  },
+  {
     "DiaSemana": "Domingo",
-    "Dia": 23,
-    "Mes": 11,
+    "Dia": 21,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
@@ -1396,36 +1403,36 @@
   },
   {
     "DiaSemana": "Lunes",
-    "Dia": 24,
-    "Mes": 11,
+    "Dia": 22,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
     "SalidaM": "",
     "ConductorM": "",
     "TerritorioM": "",
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Zoom",
-    "SalidaT": "Congregacional",
-    "ConductorT": "Emanuel Gualpa",
+    "HoraT": "",
+    "PuntoEncuentroT": "",
+    "SalidaT": "",
+    "ConductorT": "",
     "TerritorioT": "",
-    "HoraN": "",
-    "PuntoEncuentroN": "",
-    "SalidaN": "",
-    "ConductorN": "",
+    "HoraN": "20:00",
+    "PuntoEncuentroN": "Zoom",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Emanuel Gualpa",
     "TerritorioN": ""
   },
   {
     "DiaSemana": "Martes",
-    "Dia": 25,
-    "Mes": 11,
+    "Dia": 23,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Centro de Salud",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Castro",
     "SalidaM": "Congregacional",
-    "ConductorM": "Hector Ortiz",
-    "TerritorioM": 12,
-    "HoraT": "18:00",
+    "ConductorM": "Jose Ortiz",
+    "TerritorioM": 31,
+    "HoraT": "18:30",
     "PuntoEncuentroT": "Curupaiti y Castro",
     "SalidaT": "Congregacional",
     "ConductorT": "Alejandro Videla",
@@ -1438,19 +1445,19 @@
   },
   {
     "DiaSemana": "Miercoles",
-    "Dia": 26,
-    "Mes": 11,
+    "Dia": 24,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
+    "HoraM": "09:00",
     "PuntoEncuentroM": "Curupaiti y Castro",
     "SalidaM": "Congregacional",
-    "ConductorM": "Jose Ortiz",
-    "TerritorioM": 30,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Curupaiti y Castro",
+    "ConductorM": "Hector Ortiz",
+    "TerritorioM": 36,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Centro de Salud",
     "SalidaT": "Congregacional",
-    "ConductorT": "Carlos Caba�ez",
-    "TerritorioT": 36,
+    "ConductorT": "Matias Biscontin",
+    "TerritorioT": 15,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -1459,14 +1466,14 @@
   },
   {
     "DiaSemana": "Jueves",
-    "Dia": 27,
-    "Mes": 11,
+    "Dia": 25,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Zoom",
+    "HoraM": "10:00",
+    "PuntoEncuentroM": "Candia",
     "SalidaM": "Congregacional",
-    "ConductorM": "Emanuel Gualpa",
-    "TerritorioM": "",
+    "ConductorM": "Daniel del Balzo",
+    "TerritorioM": 10,
     "HoraT": "",
     "PuntoEncuentroT": "",
     "SalidaT": "",
@@ -1480,19 +1487,19 @@
   },
   {
     "DiaSemana": "Viernes",
-    "Dia": 28,
-    "Mes": 11,
+    "Dia": 26,
+    "Mes": 12,
     "Anio": 2025,
-    "HoraM": "09:30",
-    "PuntoEncuentroM": "Curupaiti y Castro",
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Elpidio Gonzalez",
     "SalidaM": "Congregacional",
-    "ConductorM": "Oscar Galdames",
-    "TerritorioM": 37,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Curupaiti y Castro",
+    "ConductorM": "Jose Ortiz",
+    "TerritorioM": 25,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Centro de Salud",
     "SalidaT": "Congregacional",
     "ConductorT": "Cristian Bringas",
-    "TerritorioT": 29,
+    "TerritorioT": 13,
     "HoraN": "20:00",
     "PuntoEncuentroN": "Zoom",
     "SalidaN": "Congregacional",
@@ -1501,19 +1508,19 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 29,
-    "Mes": 11,
+    "Dia": 27,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "09:30",
     "PuntoEncuentroM": "San Francisco del Monte y 9 de Julio",
     "SalidaM": "Congregacional",
-    "ConductorM": "Jines Candia",
+    "ConductorM": "William Calderon",
     "TerritorioM": 7,
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Pedro Goyena y 9 de Julio",
-    "SalidaT": "Grupos 1 y 3",
-    "ConductorT": "Ruben Biscontin",
-    "TerritorioT": 8,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Centro de Salud",
+    "SalidaT": "Grupos 1 y 4",
+    "ConductorT": "Jose Quiroga",
+    "TerritorioT": 12,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
@@ -1522,26 +1529,110 @@
   },
   {
     "DiaSemana": "Sabado",
-    "Dia": 29,
-    "Mes": 11,
+    "Dia": 27,
+    "Mes": 12,
     "Anio": 2025,
     "HoraM": "",
     "PuntoEncuentroM": "",
     "SalidaM": "",
     "ConductorM": "",
     "TerritorioM": "",
-    "HoraT": "18:00",
-    "PuntoEncuentroT": "Pedro Goyena y Tapon Moyano",
-    "SalidaT": "Grupos 2 y 4",
-    "ConductorT": "Daniel del Balzo",
-    "TerritorioT": 9,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Pedro Goyena y 9 de Julio",
+    "SalidaT": "Grupos 2 y 3",
+    "ConductorT": "Oscar Mu�oz",
+    "TerritorioT": 19,
+    "HoraN": "",
+    "PuntoEncuentroN": "",
+    "SalidaN": "",
+    "ConductorN": "",
+    "TerritorioN": ""
+  },
+  {
+    "DiaSemana": "Domingo",
+    "Dia": 28,
+    "Mes": 12,
+    "Anio": 2025,
+    "HoraM": "",
+    "PuntoEncuentroM": "",
+    "SalidaM": "",
+    "ConductorM": "",
+    "TerritorioM": "",
+    "HoraT": "",
+    "PuntoEncuentroT": "",
+    "SalidaT": "",
+    "ConductorT": "",
+    "TerritorioT": "",
+    "HoraN": "",
+    "PuntoEncuentroN": "",
+    "SalidaN": "",
+    "ConductorN": "",
+    "TerritorioN": ""
+  },
+  {
+    "DiaSemana": "Lunes",
+    "Dia": 29,
+    "Mes": 12,
+    "Anio": 2025,
+    "HoraM": "",
+    "PuntoEncuentroM": "",
+    "SalidaM": "",
+    "ConductorM": "",
+    "TerritorioM": "",
+    "HoraT": "",
+    "PuntoEncuentroT": "",
+    "SalidaT": "",
+    "ConductorT": "",
+    "TerritorioT": "",
+    "HoraN": "20:00",
+    "PuntoEncuentroN": "Zoom",
+    "SalidaN": "Congregacional",
+    "ConductorN": "Emanuel Gualpa",
+    "TerritorioN": ""
+  },
+  {
+    "DiaSemana": "Martes",
+    "Dia": 30,
+    "Mes": 12,
+    "Anio": 2025,
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Castro",
+    "SalidaM": "Congregacional",
+    "ConductorM": "Hector Ortiz",
+    "TerritorioM": 28,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Reyes",
+    "SalidaT": "Congregacional",
+    "ConductorT": "Alejandro Videla",
+    "TerritorioT": 18,
+    "HoraN": "",
+    "PuntoEncuentroN": "",
+    "SalidaN": "",
+    "ConductorN": "",
+    "TerritorioN": ""
+  },
+  {
+    "DiaSemana": "Miercoles",
+    "Dia": 31,
+    "Mes": 12,
+    "Anio": 2025,
+    "HoraM": "09:00",
+    "PuntoEncuentroM": "Curupaiti y Elpidio Gonzalez",
+    "SalidaM": "Congregacional",
+    "ConductorM": "Jose Ortiz",
+    "TerritorioM": 26,
+    "HoraT": "18:30",
+    "PuntoEncuentroT": "Reyes",
+    "SalidaT": "Congregacional",
+    "ConductorT": "Roque Castillo",
+    "TerritorioT": 18,
     "HoraN": "",
     "PuntoEncuentroN": "",
     "SalidaN": "",
     "ConductorN": "",
     "TerritorioN": ""
   }
-		];
+];
 
 		var Version = "1"; //Cambiar este valor para volver a mostrar el modal de presentacion cada vez que haya una actualizacion importante
 		<!--Mapas o capas bases-->
@@ -2219,10 +2310,18 @@
 				cajadistancia.style.color = "#155724";
 			};
 			if (distancia <= 7 && orientarme=="si") {
-				cajadistancia.style.visibility="visible";
-				cajadistancia.textContent = "¡Has llegado a tu destino!";
-				cajadistancia.style.background = "#d4edda";
-				cajadistancia.style.color = "#155724";
+				setTimeout(() => {
+					//const elemento = document.getElementById("cajadistancia");
+					//if (elemento) {
+					cajadistancia.style.opacity = "0";
+					cajadistancia.style.visibility="visible";
+					cajadistancia.textContent = "¡Has llegado a tu destino!";
+					cajadistancia.style.background = "#d4edda";
+					cajadistancia.style.color = "#155724";
+					setTimeout(()=> elemento.style.display = "none", 1000); // espera al fade-out
+					//}
+				}, 10000);
+			
 				if (avisollegada==="si") {AlertaLlegada("Has llegado a tu destino")};
 			};
 		};
@@ -2483,7 +2582,7 @@
 			temporizadormodalflash=setTimeout(() => {
 				document.getElementById("btn-indicaciones-modal-flash").style.visibility='hidden';
 				document.getElementById("MiModalFlash").style.visibility='hidden';
-				if (nomostrarinicial.checked) {localStorage.setItem('MOSTRAR_INICIAL', 1);document.getElementById("borrableinicial").style.visibility="hidden"};
+				if (nomostrarinicial.checked) {localStorage.setItem('MOSTRAR_INICIAL', Version);document.getElementById("borrableinicial").style.display="none"};
 				//if (mail=="si") {EnviarMail()};
 			}, tiempo);
 		};
@@ -2521,8 +2620,8 @@
 			document.getElementById("MiModalFlash").style.visibility='hidden';
 			if (nomostrarinicial.checked) {
 				try {
-					localStorage.setItem('MOSTRAR_INICIAL', 1);
-					document.getElementById("borrableinicial").style.visibility="hidden";
+					localStorage.setItem('MOSTRAR_INICIAL', Version);
+					document.getElementById("borrableinicial").style.display="none";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -2559,8 +2658,8 @@
 			document.getElementById("MiModalFlash").style.visibility='hidden';
 			if (nomostrarinicial.checked) {
 				try {
-					localStorage.setItem('MOSTRAR_INICIAL', 1);
-					document.getElementById("borrableinicial").style.visibility="hidden";
+					localStorage.setItem('MOSTRAR_INICIAL', Version);
+					document.getElementById("borrableinicial").style.display="none";
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -2592,7 +2691,7 @@
 			document.getElementById("flecharoja").style.visibility='hidden';
 			if (nomostrarlonuevo.checked) {
 				try {
-					localStorage.setItem('MOSTRAR_NUEVO', 1);
+					localStorage.setItem('MOSTRAR_NUEVO', Version);
 					elementonovedoso.classList.remove('resaltarlonovedoso');
 				} catch(e){
 					// ignore storage errors
@@ -3147,7 +3246,7 @@
 		const novedaden="barralateral";//Cambiar si fuera otro elemento el que contenga la novedad
 		// Fechas de inicio y fin para resaltar o remarcar una novedad (pueden incluir hora si querés)
 		const inicio = new Date("2025-11-01"); //yyyy-mm-dd
-		const fin = new Date("2025-11-20"); //yyyy-mm-dd
+		const fin = new Date("2025-12-30"); //yyyy-mm-dd
 		const hoy = new Date();
 		const cartelnuevo = document.getElementById('cartelnuevo');
 		if (hoy >= inicio && hoy <= fin && Version !==localStorage.getItem('MOSTRAR_NUEVO')) {
@@ -3163,7 +3262,7 @@
 		function abrirguia(){
 			cartelnuevo.style.display = 'block';
 			// posicionar la guía apuntando al botón
-			if (sistema_operativo!=="Windows Phone" && sistema_operativo!=="Android" && sistema_operativo!=="iOS (iPad o iPhone)") {document.getElementById("flecharoja").style.visibility='visible'};
+			if (sistema_operativo !=="Windows Phone" && sistema_operativo !=="Android" && sistema_operativo !=="iOS (iPad o iPhone)") {document.getElementById("flecharoja").style.visibility='visible'};
 			posicionguia();
 			// animación de aparición
 			requestAnimationFrame(()=> cartelnuevo.classList.add('show'));
@@ -3176,7 +3275,7 @@
 			document.getElementById("flecharoja").style.visibility='hidden';
 			if (nomostrarlonuevo.checked) {
 				try {
-					localStorage.setItem('MOSTRAR_NUEVO', 1);
+					localStorage.setItem('MOSTRAR_NUEVO', Version);
 				} catch(e){
 					// ignore storage errors
 					console.warn('No se pudo guardar preferencia en localStorage', e);
@@ -3255,11 +3354,23 @@
 			document.getElementById("restablecernomostrar").style.visibility="hidden";
 		};
 		
+		
+		
+		
+		
+		alert("Pasé por acá...!!!.-");
+		
+		
+		
+		
+		
+		
+		
 		//Función No Volver a mostrar sugerencia para girar el celular
 		function VerificarNoVolverAMostrar(){
-			if (Version !== localStorage.getItem('MOSTRAR_INICIAL')) {ModalFlash(tiempomodalflash);document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrableinicial").style.visibility="hidden";document.getElementById("borrablelonuevo").style.visibility="hidden";document.getElementById("restablecernomostrar").style.visibility="visible"};
-			if (localStorage.getItem('MOSTRAR_CELULAR') !=="no" && sistema_operativo !=="Windows" && sistema_operativo !=="Linux") {modalinicial.showModal();document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrablecelular").style.display="none";document.getElementById("restablecernomostrar").style.visibility="visible"};
-			if (Version !==localStorage.getItem('MOSTRAR_NUEVO')) {document.getElementById("flecharoja").style.visibility='visible'} else {document.getElementById("flecharoja").style.visibility='hidden'};
+			if (Version !== (localStorage.getItem('MOSTRAR_INICIAL')|| null)) {ModalFlash(tiempomodalflash);document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrableinicial").style.display="none";document.getElementById("borrablelonuevo").display="none";document.getElementById("restablecernomostrar").style.visibility="visible"};
+			if (localStorage.getItem('MOSTRAR_CELULAR') !=="no" && sistema_operativo !=="Windows" && sistema_operativo !=="Linux") {modalinicial.showModal();document.getElementById("restablecernomostrar").style.visibility="hidden"} else {document.getElementById("borrablecelular").display="none";document.getElementById("restablecernomostrar").style.visibility="visible"};
+			if (Version !== (localStorage.getItem('MOSTRAR_NUEVO') || null)) {document.getElementById("flecharoja").style.visibility='visible'} else {document.getElementById("flecharoja").style.visibility='hidden'};
 			if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {document.getElementById("flecharoja").style.visibility='hidden'};
 		};
 		
@@ -3283,7 +3394,7 @@
 		VerificarConexion();
 		VerificarVersion();
 		VerificarNoVolverAMostrar();
-		if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {dispositivo="movil"}
+		if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {dispositivo="movil"; mapa.style.height = "80%"}
 		else if (sistema_operativo=="Windows" || sistema_operativo=="MacOS" || sistema_operativo=="Linux") {dispositivo="pc"}
 		else {dispositivo="desconocido"};
 		window.addEventListener("load", async () => {
@@ -3309,6 +3420,6 @@
 				//enviando.textContent = 'Hubo un error; por lo que no se pudo enviar la información. Por favor, intentalo nuevamente.-';
 			}
 		});
-		if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {mapa.style.height = "80%"};
+		//if (sistema_operativo=="Windows Phone" || sistema_operativo=="Android" || sistema_operativo=="iOS (iPad o iPhone)") {mapa.style.height = "80%"};
 	</script>
 </html>

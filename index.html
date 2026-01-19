@@ -1086,8 +1086,6 @@
 	var capturaActiva= false;
 	var firstLatLng, secondLatLng;
 	var conexion="";
-	//var circulo="";
-	//var marcador="";
 	var intervaloRuta = "";
 	var seguimiento="no";
 	var listabusqueda=[];
@@ -1098,10 +1096,8 @@
 	var persona="";
 	var oficina="";
 	var lugar="";
-	//var ubicacion_real="";
 	var marca_ubicacion_real="";
 	var coordenadas_ubicacion_real="";
-	//var borrar_ubicacion_real="";
 	var sondeo_posicion="";
 	var aer="";
 	var mail="";
@@ -1112,8 +1108,6 @@
 	var tiempo=null;
 	var dentroeeamza="";
 	var dispositivo="";
-	//var geoposicion="";
-	//var origen=[];
 	var coord=[];
 	var markers=[];
 	var perimetro=null;
@@ -1123,10 +1117,9 @@
 	var modo = "superficie";
 	var cant_mediciones=0;
 	//var centroide=L.latLng(-33.00376868173891, -68.85766030976325); ==>INTA
-	var centroide=L.latLng(-32.92668695613277, -68.78035930292342);
+	var centroide=L.latLng(-32.95580000000000, -68.78249300000000);
 	var entradaeea=L.latLng(-33.003773232329486, -68.85766687268227);
 	var poligono="";
-	//var estoyaqui="";
 	var ruta="";
 	var senialgps="";
 	var orientarme="";
@@ -1796,12 +1789,14 @@
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
 		};
-		if ((distancia >80 && distancia <= 150) && (lugar !== "" || aer !== "")) {
+		//if ((distancia >80 && distancia <= 150) && (lugar !== "" || aer !== "")) {
+		if (distancia >80 && distancia <= 150) {
 			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!";
 			if (avisollegada=="si") {AlertaLlegada(msg)};
 		};
 		if (distancia>10 && distancia<80) {avisollegada="si"};
-		if ((distancia <= 10) && (lugar !=="" || aer !=="")) {
+		//if ((distancia <= 10) && (lugar !=="" || aer !=="")) {
+		if (distancia <= 10) {
 			cajadistancia.textContent = "¡Has llegado a tu destino!.-";
 			refrescoRutaActivo = false;
 			clearInterval(intervaloRuta);

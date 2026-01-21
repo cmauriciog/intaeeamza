@@ -1116,8 +1116,7 @@
 	var distanciaTotal = 0;
 	var modo = "superficie";
 	var cant_mediciones=0;
-	//var centroide=L.latLng(-33.00376868173891, -68.85766030976325); ==>INTA
-	var centroide=L.latLng(-32.95580000000000, -68.78249300000000);
+	var centroide=L.latLng(-33.00376868173891, -68.85766030976325);
 	var entradaeea=L.latLng(-33.003773232329486, -68.85766687268227);
 	var poligono="";
 	var ruta="";
@@ -1667,8 +1666,6 @@
 				const lat = pos.coords.latitude.toFixed(6);
 				const lon = pos.coords.longitude.toFixed(6);
 				const accuracy = pos.coords.accuracy;
-				//alert(`✅ GPS activo\nLatitud: ${lat}\nLongitud: ${lon}\nPrecisión: ${accuracy} metros`+pos.coords.latitude+pos.coords.longitude);
-				//MarcarUbicacion(pos);
 			},
 			<!--Algún problema con el GPS-->
 			(error) => {
@@ -1920,7 +1917,6 @@
 		cajadistancia.classList.remove("visible");
 		document.getElementById("dondestoy").style.visibility='hidden';
 		document.getElementById("ubicacion_estado").href="javascript:activar_seguimiento(seguimiento)";
-		//DetenerActualizarUbicacion();
 		clearInterval(intervalo);
 		clearInterval(intervaloRuta);
 		clearTimeout(temporizadormodalflash);
@@ -1946,61 +1942,9 @@
 		iraaer="";
 		mail="";
 	};
-
-	<!--Función para Trazar Ruta Sugerida con OSRM-->
-	<!-- function TrazarRuta() { -->
-		<!-- clearInterval(intervalo); -->
-		<!-- clearInterval(intervaloRuta); -->
-		<!-- clearTimeout(temporizadormodalflash); -->
-		<!-- clearTimeout(tiempo); -->
-		<!-- modalinicial.close(); -->
-		<!-- mimodalflash.style.display='none'; -->
-		<!-- btnindicacionesmodalflash.style.display='none'; -->
-		<!-- visitas.style.display='none'; -->
-		<!-- document.getElementById("borrableinicial").style.display='none'; -->
-		<!-- botoncentrado.style.display="block"; -->
-		<!-- VerificarConexion(); -->
-		<!-- if (conexion === "si") VerificarGPS(); -->
-		<!-- distancia = DistanciaEnTiempoReal(); -->
-		<!-- avisollegada="si"; -->
-		<!-- // SI ESTÁS CERCA → no rutea pero sigue actualizando -->
-		<!-- if (distancia <= 1100) { -->
-			<!-- clearInterval(intervaloRuta); -->
-			<!-- ActualizarUbicacion(); -->
-			<!-- return; -->
-		<!-- }; -->
-		<!-- //if (distancia > 1100 && !lugar) { -->
-		<!-- //	centroide = entradaeea; -->
-		<!-- //}; -->
-		<!-- // 🔥 eliminar ruta anterior -->
-		<!-- if (ruta) { -->
-			<!-- mapa.removeControl(ruta); -->
-			<!-- ruta = null; -->
-		<!-- }; -->
-		<!-- // 🔥 crear ruta nueva -->
-		<!-- ruta = L.Routing.control({ -->
-			<!-- waypoints: [L.latLng(coordenadas_ubicacion_real.lat, coordenadas_ubicacion_real.lng),L.latLng(centroide.lat, centroide.lng)], -->
-			<!-- router: L.Routing.osrmv1({serviceUrl: 'https://router.project-osrm.org/route/v1',language: 'es'}), -->
-			<!-- showAlternatives: true, -->
-			<!-- draggableWaypoints: false, -->
-			<!-- createMarker: () => null, -->
-			<!-- lineOptions: {styles: [{color: 'red', weight: 9, opacity: 0.9}]}, -->
-			<!-- altLineOptions: {styles: [{color: 'orange', weight: 6, opacity: 0.6, dashArray: '8,12'}]} -->
-		<!-- }).addTo(mapa); -->
-		<!-- if (ruta) {botondetallesruta.style.display="block"}; -->
-		<!-- panelrutas.style.display = "block"; -->
-		<!-- panelrutas.replaceChildren(ruta.getContainer()); -->
-		<!-- // 🔁 refresco real -->
-		<!-- clearInterval(intervaloRuta); -->
-		<!-- intervaloRuta = setInterval(() => { -->
-			<!-- TrazarRuta();   // 🔥 recalcula TODO -->
-		<!-- }, 300000); // ⏱️ cada 5 minutos -->
-	<!-- }; -->
-	
 	
 	function RefrescarRuta() {
 		if (!refrescoRutaActivo) return;
-		//alert("⏱️ Refrescando ruta", new Date().toLocaleTimeString());
 		TrazarRuta();
 		setTimeout(RefrescarRuta, 300000); // 5 minutos
 	};
@@ -2012,7 +1956,6 @@
 	};
 	
 	function TrazarRuta() {
-		//alert("⏱️ TrazarRuta ejecutada:", new Date().toLocaleTimeString());
 		clearTimeout(temporizadormodalflash);
 		clearTimeout(tiempo);
 		modalinicial.close();
@@ -2050,12 +1993,7 @@
 			createMarker: () => null,
 			lineOptions: {
 				styles: [{ color: 'red', weight: 9, opacity: 0.9 }]},
-
-
-altLineOptions: {styles: [{color: 'blue', weight: 6, opacity: 0.6, dashArray: '8,12'}]} 
-
-
-			
+			altLineOptions: {styles: [{color: 'blue', weight: 6, opacity: 0.6, dashArray: '8,12'}]} 
 		}).addTo(mapa);
 		botondetallesruta.style.display = "block";
 		panelrutas.style.display = "block";
@@ -2851,11 +2789,9 @@ altLineOptions: {styles: [{color: 'blue', weight: 6, opacity: 0.6, dashArray: '8
 		const icono=document.getElementById("imagenmediciones");
 		if (capturaActiva) {
 			mapa.on('click', AgregarPunto);
-			//icono.src = "./images/nomediciones.jpg";
 			document.getElementById("contenedorMediciones").style.visibility='visible';
 		} else {
 			mapa.off('click', AgregarPunto);
-			//icono.src="./images/mediciones.jpg";
 			document.getElementById("contenedorMediciones").style.visibility='hidden';
 			ResetearMediciones();
 		};
@@ -2864,7 +2800,6 @@ altLineOptions: {styles: [{color: 'blue', weight: 6, opacity: 0.6, dashArray: '8
 	//Función Despejar Pantalla
 	function LimpiarPantalla() {
 		// Opción 1: vaciar todo el body (excepto el botón)
-		//document.body.innerHTML = `<button id="btnLimpiar" onclick="limpiarPantalla()">🧹 Despejar pantalla</button>`;
 		document.getElementById("medir").click();
 		document.getElementById("contenedorMediciones").style.visibility='hidden';
 		document.getElementById("BotonLimpiarPantalla").style.visibility='hidden';
@@ -2895,7 +2830,7 @@ altLineOptions: {styles: [{color: 'blue', weight: 6, opacity: 0.6, dashArray: '8
 		if (btncerrarmodalflash.textContent.trim() === "No") {orientarme = "no"};
 		avisollegada="no";
 		if (mail==="si") {EnviarMail()};
-		if (iraaer==="si") {IniciarRuteo()};//TrazarRuta()};
+		if (iraaer==="si") {IniciarRuteo()};
 		visitas.style.display='none';
 	});
 	
@@ -2933,7 +2868,6 @@ altLineOptions: {styles: [{color: 'blue', weight: 6, opacity: 0.6, dashArray: '8
 	});
 	
 	//Bloque para resaltar o remarcar lo nuevo
-		//const elementonovedoso = document.getElementById('botonreportarpredicado');
 		const elementonovedoso = document.getElementById('barralateral');
 		const novedaden="barralateral";//Cambiar si fuera otro elemento el que contenga la novedad
 		// Fechas de inicio y fin para resaltar o remarcar una novedad (pueden incluir hora si querés)

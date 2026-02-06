@@ -1785,14 +1785,9 @@
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
-			//if (avisovelocidadmaxima=="") {
-			//	const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular dentro del INTA es de 30 kilometros por hora.-");
-			//	speechSynthesis.speak(utterance);
-			//	avisovelocidadmaxima="si";
-			//};	
 		};
 		if (distancia >80 && distancia <= 180) {
-			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!. Recorda que la velocidad maxima recomendada dentro del INTA es de 30 kilometros por hora";
+			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!. Recorda que la velocidad maxima recomendada dentro del inta es de 30 kilometros por hora";
 			if (avisollegada=="si") {AlertaLlegada(msg)};
 		};
 		if (distancia>10 && distancia<80) {avisollegada="si"};
@@ -2821,17 +2816,11 @@
 		clearTimeout(temporizadormodalflash);
 		clearTimeout(tiempo);
 		if (ruta) {ruta.remove();botondetallesruta.style.display="none"};
-		
-		
-		
 		if (avisovelocidadmaxima=="" && avisollegada=="si" && dentroeeamza) {
-			const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular dentro del INTA es de 30 kilometros por hora.-");
+			const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular dentro del inta es de 30 kilometros por hora.-");
 			speechSynthesis.speak(utterance);
 			avisovelocidadmaxima="si";
 		};
-		
-		
-		
 		if (nomostrarinicial.checked) {
 			try {
 				localStorage.setItem('MOSTRAR_INICIAL', Version);

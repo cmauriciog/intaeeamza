@@ -1781,11 +1781,11 @@
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724"
 		} else {
-			cajadistancia.textContent = "Estás dentro de la EEA Mendoza. La velocidad máxima recomendada para circular es de 30 km/h.-";
+			cajadistancia.innerHTML = "Estás dentro de la EEA Mendoza.<br>La velocidad máxima recomendada para circular es de 30 km/h.-";
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
-			if (avisovelocidadmaxima==null) {
+			if (avisovelocidadmaxima=="") {
 				const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular es de 30 kilometros por hora.-");
 				speechSynthesis.speak(utterance);
 				avisovelocidadmaxima="si";

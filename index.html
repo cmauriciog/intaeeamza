@@ -1781,12 +1781,13 @@
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724"
 		} else {
-			cajadistancia.innerHTML = "Estás dentro de la EEA Mendoza.<br>La velocidad máxima recomendada para circular aqui es de 30 km/h.-";
+			if (dispositivo=="movil") {cajadistancia.innerHTML = "Estás dentro de la EEA Mendoza.<br>La velocidad máxima recomendada para circular aqui es de 30 km/h.-"};
+			if (dispositivo=="pc") {cajadistancia.innerHTML = "Estás dentro de la EEA Mendoza.-"};
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
 		};
-		if (distancia >80 && distancia <= 180) {
+		if (distancia >80 && distancia <= 180 && dispositivo=="movil") {
 			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!. Recorda que la velocidad maxima recomendada dentro del inta es de 30 kilometros por hora";
 			if (avisollegada=="si") {AlertaLlegada(msg)};
 		};
@@ -2816,7 +2817,7 @@
 		clearTimeout(temporizadormodalflash);
 		clearTimeout(tiempo);
 		if (ruta) {ruta.remove();botondetallesruta.style.display="none"};
-		if (avisovelocidadmaxima=="" && avisollegada=="si" && dentroeeamza) {
+		if (avisovelocidadmaxima=="" && avisollegada=="si" && dentroeeamza && dispositivo=="movil") {
 			const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular dentro del inta es de 30 kilometros por hora.-");
 			speechSynthesis.speak(utterance);
 			avisovelocidadmaxima="si";

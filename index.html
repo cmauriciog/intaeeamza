@@ -1123,6 +1123,7 @@
 	var senialgps="";
 	var orientarme="";
 	var avisollegada="";
+	var avisovelocidadmaxima="";
 	var msgencontrado="";
 	var icono_posicion = L.icon({iconUrl: './images/posicion.png',iconSize: [35, 40],});
 	var icono_inta= L.icon({iconUrl: './images/inta.jpg',iconSize: [30, 30],});
@@ -1300,7 +1301,6 @@
 						.bindPopup(contenidoPopup, formatoPopup)
 						.openPopup()};
 		};
-		
 	};
 
 	<!--Funcion para filtrar con criterio distinto a vid. Es insensible al uso de mayúsculas/minúsculas y busca con criterio tipo "*...*" -->
@@ -1785,19 +1785,15 @@
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
-			
-			
-			
-			const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular es de 30 kilometros por hora.-");
-			speechSynthesis.speak(utterance);
-			
-			
-			
-			
+			if (avisovelocidadmaxima==null) {
+				const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular es de 30 kilometros por hora.-");
+				speechSynthesis.speak(utterance);
+				avisovelocidadmaxima="si";
+			};	
 		};
 		//if ((distancia >80 && distancia <= 150) && (lugar !== "" || aer !== "")) {
 		if (distancia >80 && distancia <= 180) {
-			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!";
+			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!. Recorda que la velocidad maxima recomendada es de 30 kilometros por hora";
 			if (avisollegada=="si") {AlertaLlegada(msg)};
 		};
 		if (distancia>10 && distancia<80) {avisollegada="si"};

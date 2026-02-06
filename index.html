@@ -1781,23 +1781,21 @@
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724"
 		} else {
-			cajadistancia.innerHTML = "Estás dentro de la EEA Mendoza.<br>La velocidad máxima recomendada para circular es de 30 km/h.-";
+			cajadistancia.innerHTML = "Estás dentro de la EEA Mendoza.<br>La velocidad máxima recomendada para circular aqui es de 30 km/h.-";
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
-			if (avisovelocidadmaxima=="") {
-				const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular es de 30 kilometros por hora.-");
-				speechSynthesis.speak(utterance);
-				avisovelocidadmaxima="si";
-			};	
+			//if (avisovelocidadmaxima=="") {
+			//	const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular dentro del INTA es de 30 kilometros por hora.-");
+			//	speechSynthesis.speak(utterance);
+			//	avisovelocidadmaxima="si";
+			//};	
 		};
-		//if ((distancia >80 && distancia <= 150) && (lugar !== "" || aer !== "")) {
 		if (distancia >80 && distancia <= 180) {
-			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!. Recorda que la velocidad maxima recomendada es de 30 kilometros por hora";
+			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!. Recorda que la velocidad maxima recomendada dentro del INTA es de 30 kilometros por hora";
 			if (avisollegada=="si") {AlertaLlegada(msg)};
 		};
 		if (distancia>10 && distancia<80) {avisollegada="si"};
-		//if ((distancia <= 10) && (lugar !=="" || aer !=="")) {
 		if (distancia <= 10) {
 			cajadistancia.textContent = "¡Has llegado a tu destino!.-";
 			refrescoRutaActivo = false;
@@ -1951,7 +1949,7 @@
 	function RefrescarRuta() {
 		if (!refrescoRutaActivo) return;
 		TrazarRuta();
-		setTimeout(RefrescarRuta, 300000); // 5 minutos
+		setTimeout(RefrescarRuta, 180000); // 3 minutos
 	};
 	
 	function IniciarRuteo() {
@@ -2823,6 +2821,17 @@
 		clearTimeout(temporizadormodalflash);
 		clearTimeout(tiempo);
 		if (ruta) {ruta.remove();botondetallesruta.style.display="none"};
+		
+		
+		
+		if (avisovelocidadmaxima=="" && avisollegada=="si" && dentroeeamza) {
+			const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular dentro del INTA es de 30 kilometros por hora.-");
+			speechSynthesis.speak(utterance);
+			avisovelocidadmaxima="si";
+		};
+		
+		
+		
 		if (nomostrarinicial.checked) {
 			try {
 				localStorage.setItem('MOSTRAR_INICIAL', Version);
@@ -2852,22 +2861,12 @@
 		clearInterval(intervalo);
 		clearInterval(intervaloRuta);
 		clearTimeout(tiempo);
-		
-		
-		
-		
 		titulomodalflash.innerText="TRAZAR RUTA";
-		//visitas.style.display="none";
-		//cantidadvisitas.style.display="none";
 		cuerpomodalflash.innerHTML = '<span style="color:green"><br><b>Se te ofrecerán alertas por voz.</b><br><br><span style="color:black">Por lo tanto, asegurate de tener activado el sonido del dispositivo y a un volumen que puedas escucharlo sin distraerte demasiado.-<br></span>';
 		btnindicacionesmodalflash.style.display='none';
 		btncerrarmodalflash.textContent = "Cerrar";
 		tiempomodalflash=5000;
 		ModalFlash(tiempomodalflash);
-		
-		
-		
-		
 	});
 
 	// === BOTÓN MOSTRAR / OCULTAR DETALLES RUTAS===

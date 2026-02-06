@@ -1781,13 +1781,22 @@
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724"
 		} else {
-			cajadistancia.textContent = "Estás dentro de la EEA Mendoza.-";
+			cajadistancia.textContent = "Estás dentro de la EEA Mendoza. La velocidad máxima recomendada para circular es de 30 km/h.-";
 			cajadistancia.style.background = "#d4edda";
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
+			
+			
+			
+			const utterance = new SpeechSynthesisUtterance("La velocidad maxima recomendada para circular es de 30 kilometros por hora.-");
+			speechSynthesis.speak(utterance);
+			
+			
+			
+			
 		};
 		//if ((distancia >80 && distancia <= 150) && (lugar !== "" || aer !== "")) {
-		if (distancia >80 && distancia <= 150) {
+		if (distancia >80 && distancia <= 180) {
 			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!";
 			if (avisollegada=="si") {AlertaLlegada(msg)};
 		};
@@ -1802,7 +1811,7 @@
 				cajadistancia.classList.remove("visible");
 			}, 10000);
 			mapa.setView(coordenadas_ubicacion_real, 19);
-			if (avisollegada=="si") {AlertaLlegada("Has llegado a tu destino ")};//+msgencontrado)};
+			if (avisollegada=="si") {AlertaLlegada("Has llegado a tu destino "+msgencontrado)};
 		};
 	};
 
@@ -2847,6 +2856,22 @@
 		clearInterval(intervalo);
 		clearInterval(intervaloRuta);
 		clearTimeout(tiempo);
+		
+		
+		
+		
+		titulomodalflash.innerText="TRAZAR RUTA";
+		//visitas.style.display="none";
+		//cantidadvisitas.style.display="none";
+		cuerpomodalflash.innerHTML = '<span style="color:green"><br><b>Se te ofrecerán alertas por voz.</b><br><br><span style="color:black">Por lo tanto, asegurate de tener activado el sonido del dispositivo y a un volumen que puedas escucharlo sin distraerte demasiado.-<br></span>';
+		btnindicacionesmodalflash.style.display='none';
+		btncerrarmodalflash.textContent = "Cerrar";
+		tiempomodalflash=5000;
+		ModalFlash(tiempomodalflash);
+		
+		
+		
+		
 	});
 
 	// === BOTÓN MOSTRAR / OCULTAR DETALLES RUTAS===

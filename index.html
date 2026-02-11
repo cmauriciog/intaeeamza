@@ -1713,7 +1713,6 @@
 			};
 			if (dispositivo==="pc") {botoncentrado.style.display='block'};
 			cajadistancia.classList.add("visible");
-			//botondetallesruta.style.display="block";
 			seguimiento="si";
 			mapa.locate({setView: false, watch: true, enableHighAccuracy: true});
 			mapa.on('locationfound', ActualizarUbicacion);
@@ -1749,7 +1748,7 @@
 				tiempomodalflash=5000;
 				ModalFlash(tiempomodalflash);
 			};
-			if (distancia<=1100 && distancia>7) {
+			if (distancia<=1100 && distancia>10) {
 				titulomodalflash.innerText="TRAZAR RUTA";
 				cuerpomodalflash.innerHTML = '<span style="color:green"><br><b>¿Necesitás ayuda para llegar?.</b><br><br><span style="color:black">Puedo mostrarte en tiempo real por dónde vas '+
 				'y el destino con vista de ambos puntos en el mapa.-<br></span>';
@@ -1787,12 +1786,13 @@
 			cajadistancia.style.color = "#155724";
 			botondetallesruta.style.display="none";
 		};
+		if (distancia>180) {avisollegada="si"};
 		if (distancia >80 && distancia <= 180 && dispositivo=="movil") {
 			msg="Avanza despacio y con atención. ¡Estás a pocos metros del destino!. Recorda que la velocidad maxima recomendada dentro del inta es de 30 kilometros por hora";
 			if (avisollegada=="si") {AlertaLlegada(msg)};
 		};
 		if (distancia>10 && distancia<80) {avisollegada="si"};
-		if (distancia <= 10) {
+		if (distancia <= 10 && dispositivo=="movil") {
 			cajadistancia.textContent = "¡Has llegado a tu destino!.-";
 			refrescoRutaActivo = false;
 			clearInterval(intervaloRuta);
@@ -1818,8 +1818,8 @@
 	function AlertaLlegada(leerdistancia) {
 		const utterance = new SpeechSynthesisUtterance(leerdistancia);
 		speechSynthesis.speak(utterance);
-		if (distancia>7) {avisollegada="no"};
-		if (distancia<=7) {avisollegada="no";DetenerActualizarUbicacion()};
+		if (distancia>10) {avisollegada="no"};
+		if (distancia<=10) {avisollegada="no";DetenerActualizarUbicacion()};
 		clearTimeout(temporizadormodalflash);
 	};
 	
@@ -1994,14 +1994,41 @@
 				styles: [{ color: 'red', weight: 9, opacity: 0.9 }]},
 			altLineOptions: {styles: [{color: 'blue', weight: 6, opacity: 0.6, dashArray: '8,12'}]} 
 		}).addTo(mapa);
+		
+		
+		//Probando desde acá......
+		function segundosAHorasMinutos(segundos) {
+			const horas = Math.floor(segundos / 3600);
+			const minutos = Math.round((segundos % 3600) / 60);
+			if (horas > 0) {
+				return `${horas} h ${minutos} min`;
+			}
+			return `${minutos} min`;
+		};
+		
+		ruta.on('routesfound', function (e) {
+			panelrutas.innerHTML = '';
+			e.routes.forEach((route, index) => {
+				const distanciaKm = (route.summary.totalDistance / 1000).toFixed(2);
+				const tiempoFormateado = segundosAHorasMinutos(route.summary.totalTime);
+				const div = document.createElement('div');
+				div.style.padding = '8px';
+				div.style.borderBottom = '1px solid #ccc';
+				div.innerHTML = `
+					<strong>Ruta ${index === 0 ? 'principal' : 'alternativa ' + index}</strong><br>
+					📏 Distancia: ${distanciaKm} km<br>
+					⏱️ Tiempo estimado: ${tiempoFormateado}
+				`;
+				panelrutas.appendChild(div);
+			});
+		});
+		//Hasta acá.-
+		
+		
 		botondetallesruta.style.display = "block";
 		panelrutas.style.display = "block";
 		panelrutas.replaceChildren(ruta.getContainer());
 	};
-
-
-	
-	
 
 	<!--Funcion para mostrar imagen estadísticas en ventana modal-->
 	function Funcion_Modal(imagen, titulo, leyenda, ancho, alto) {
@@ -2851,12 +2878,14 @@
 		clearInterval(intervalo);
 		clearInterval(intervaloRuta);
 		clearTimeout(tiempo);
-		titulomodalflash.innerText="TRAZAR RUTA";
-		cuerpomodalflash.innerHTML = '<span style="color:green"><br><b>Se te ofrecerán alertas por voz.</b><br><br><span style="color:black">Por lo tanto, asegurate de tener activado el sonido del dispositivo y a un volumen que puedas escucharlo sin distraerte demasiado.-<br></span>';
-		btnindicacionesmodalflash.style.display='none';
-		btncerrarmodalflash.textContent = "Cerrar";
-		tiempomodalflash=5000;
-		ModalFlash(tiempomodalflash);
+		if (dispositivo=="movil") {
+			titulomodalflash.innerText="TRAZAR RUTA";
+			cuerpomodalflash.innerHTML = '<span style="color:green"><br><b>Se te ofrecerán alertas por voz.</b><br><br><span style="color:black">Por lo tanto, asegurate de tener activado el sonido del dispositivo y a un volumen que puedas escucharlo sin distraerte demasiado.-<br></span>';
+			btnindicacionesmodalflash.style.display='none';
+			btncerrarmodalflash.textContent = "Cerrar";
+			tiempomodalflash=5000;
+			ModalFlash(tiempomodalflash);
+		};
 	});
 
 	// === BOTÓN MOSTRAR / OCULTAR DETALLES RUTAS===
